@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Club Activo | Jugador</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="dashboard theme-client">
+  <!-- =========================
+    HEADER SUPERIOR
+  ========================== -->
+  <header class="dashboard-header">
+    <div class="brand-mark">
+      <span>CA</span>
+      <div>
+        <strong>Club Activo</strong>
+        <small>Jugador</small>
+      </div>
+    </div>
+
+    <button class="logout-btn" type="button">Cerrar sesion</button>
+  </header>
+
+  <main class="main-content">
+    <!-- =========================
+      BANNER PRINCIPAL
+    ========================== -->
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Hola, jugador</p>
+        <h1>Tu actividad en el club</h1>
+        <p>Revisa tus clases, solicita rutinas y administra tu plan.</p>
+      </div>
+      <button class="primary-btn compact" type="button">Cambiar a plan plus</button>
+    </header>
+
+    <!-- =========================
+      ESTADISTICAS
+    ========================== -->
+    <section class="stats-grid">
+      <article class="stat-card">
+        <span>Clases inscriptas</span>
+        <strong>3</strong>
+        <small>Esta semana</small>
+      </article>
+      <article class="stat-card">
+        <span>Rutinas</span>
+        <strong>2</strong>
+        <small>Objetivos activos</small>
+      </article>
+      <article class="stat-card">
+        <span>Plan</span>
+        <strong>Plus</strong>
+        <small>Beneficios disponibles</small>
+      </article>
+      <article class="stat-card">
+        <span>Proxima clase</span>
+        <strong>18:00</strong>
+        <small>Funcional, lunes</small>
+      </article>
+    </section>
+
+    <!-- =========================
+      CLASES DISPONIBLES
+    ========================== -->
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Clases disponibles</h2>
+          <p>GET /v1/clases e inscripcion con PUT /v1/clases/:idClase/inscribir-usuario.</p>
+        </div>
+        <select>
+          <option>Todos los dias</option>
+          <option>lunes</option>
+          <option>martes</option>
+          <option>miercoles</option>
+          <option>jueves</option>
+          <option>viernes</option>
+        </select>
+      </div>
+
+      <!-- =========================
+        CALENDARIO SEMANAL
+      ========================== -->
+      <div class="schedule-board">
+        <div class="schedule-grid">
+          <!-- =========================
+            LUNES
+          ========================== -->
+          <section class="day-column">
+            <div class="day-header">
+              <strong>Lunes</strong>
+              <span>4 clases</span>
+            </div>
+
+            <article class="schedule-card">
+              <span class="class-time">18:00</span>
+              <strong>Funcional total</strong>
+              <p>Fuerza y resistencia.</p>
+              <div class="class-meta">
+                <span>Sala norte</span>
+                <span>14 / 20 cupos</span>
+              </div>
+              <button class="primary-btn compact" type="button">Inscribirme</button>
+            </article>
+
+            <article class="schedule-card">
+              <span class="class-time">20:00</span>
+              <strong>Running indoor</strong>
+              <p>Cardio progresivo.</p>
+              <div class="class-meta">
+                <span>Sala cardio</span>
+                <span>9 / 15 cupos</span>
+              </div>
+              <button class="primary-btn compact" type="button">Inscribirme</button>
+            </article>
+
+            <article class="schedule-card">
+              <span class="class-time">21:00</span>
+              <strong>Box funcional</strong>
+              <p>Circuito intenso.</p>
+              <div class="class-meta">
+                <span>Sala fuerza</span>
+                <span>10 / 14 cupos</span>
+              </div>
+              <button class="primary-btn compact" type="button">Inscribirme</button>
+            </article>
+
+            <article class="schedule-card">
+              <span class="class-time">21:45</span>
+              <strong>Stretching</strong>
+              <p>Vuelta a la calma.</p>
+              <div class="class-meta">
+                <span>Sala calma</span>
+                <span>7 / 16 cupos</span>
+              </div>
+              <button class="primary-btn compact" type="button">Inscribirme</button>
+            </article>
+          </section>
+
+          <!-- =========================
+            MARTES
+          ========================== -->
+          <section class="day-column">
+            <div class="day-header">
+              <strong>Martes</strong>
+              <span>1 clase</span>
+            </div>
+
+            <article class="schedule-card">
+              <span class="class-time">19:00</span>
+              <strong>Futbol mixto</strong>
+              <p>Entrenamiento tecnico.</p>
+              <div class="class-meta">
+                <span>Cancha 1</span>
+                <span>12 / 18 cupos</span>
+              </div>
+              <button class="primary-btn compact" type="button">Inscribirme</button>
+            </article>
+          </section>
+
+          <!-- =========================
+            MIERCOLES
+          ========================== -->
+          <section class="day-column">
+            <div class="day-header">
+              <strong>Miercoles</strong>
+              <span>1 clase</span>
+            </div>
+
+            <article class="schedule-card">
+              <span class="class-time">20:00</span>
+              <strong>Natacion inicial</strong>
+              <p>Tecnica y respiracion.</p>
+              <div class="class-meta">
+                <span>Piscina</span>
+                <span>8 / 12 cupos</span>
+              </div>
+              <button class="primary-btn compact" type="button">Inscribirme</button>
+            </article>
+          </section>
+
+          <!-- =========================
+            JUEVES
+          ========================== -->
+          <section class="day-column empty">
+            <div class="day-header">
+              <strong>Jueves</strong>
+              <span>Sin clases</span>
+            </div>
+            <p>No hay horarios publicados.</p>
+          </section>
+
+          <!-- =========================
+            VIERNES
+          ========================== -->
+          <section class="day-column">
+            <div class="day-header">
+              <strong>Viernes</strong>
+              <span>1 clase</span>
+            </div>
+
+            <article class="schedule-card">
+              <span class="class-time">09:00</span>
+              <strong>Yoga movilidad</strong>
+              <p>Movilidad y elongacion.</p>
+              <div class="class-meta">
+                <span>Sala calma</span>
+                <span>11 / 16 cupos</span>
+              </div>
+              <button class="ghost-btn compact" type="button">Ver detalle</button>
+            </article>
+          </section>
+
+          <!-- =========================
+            SABADO
+          ========================== -->
+          <section class="day-column">
+            <div class="day-header">
+              <strong>Sabado</strong>
+              <span>1 clase</span>
+            </div>
+
+            <article class="schedule-card">
+              <span class="class-time">10:30</span>
+              <strong>Funcional express</strong>
+              <p>Circuito de cuerpo completo.</p>
+              <div class="class-meta">
+                <span>Sala norte</span>
+                <span>6 / 20 cupos</span>
+              </div>
+              <button class="primary-btn compact" type="button">Inscribirme</button>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+      SOLICITAR RUTINA
+    ========================== -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Solicitar rutina</h2>
+      </div>
+
+      <form class="routine-form" data-api="POST /v1/rutinas">
+        <label>
+          Actividad
+          <select name="actividad" required>
+            <option value="">Seleccionar actividad</option>
+            <option value="actividad-funcional-id">Funcional</option>
+            <option value="actividad-natacion-id">Natacion</option>
+            <option value="actividad-running-id">Running</option>
+            <option value="actividad-yoga-id">Yoga</option>
+          </select>
+        </label>
+        <label>
+          Objetivo
+          <textarea name="objetivo" placeholder="Ganar resistencia, bajar peso, fuerza..."></textarea>
+        </label>
+        <button class="secondary-btn" type="submit">Solicitar</button>
+      </form>
+    </section>
+
+    <!-- =========================
+      MIS RUTINAS
+    ========================== -->
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Mis rutinas</h2>
+          <p>Vista pensada para GET /v1/rutinas/rutinas-usuario.</p>
+        </div>
+      </div>
+
+      <div class="routine-grid">
+        <article class="routine-card">
+          <strong>Fuerza general</strong>
+          <span>Actividad: funcional</span>
+          <ul>
+            <li>3x15 sentadillas</li>
+            <li>3x10 flexiones</li>
+            <li>4x30 segundos plancha</li>
+          </ul>
+        </article>
+
+        <article class="routine-card">
+          <strong>Resistencia</strong>
+          <span>Actividad: running</span>
+          <ul>
+            <li>10 minutos trote suave</li>
+            <li>6 series de 400m</li>
+            <li>Estiramiento final</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

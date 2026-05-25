@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Club Activo | Admin</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="dashboard theme-admin">
+  <!-- =========================
+    HEADER SUPERIOR
+  ========================== -->
+  <header class="dashboard-header">
+    <div class="brand-mark">
+      <span>CA</span>
+      <div>
+        <strong>Club Activo</strong>
+        <small>Panel Admin</small>
+      </div>
+    </div>
+
+    <button class="logout-btn" type="button">Cerrar sesion</button>
+  </header>
+
+  <main class="main-content">
+    <!-- =========================
+      BANNER PRINCIPAL
+    ========================== -->
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Administrador</p>
+        <h1>Gestion del club</h1>
+      </div>
+      <button class="primary-btn compact" type="button">Nueva clase</button>
+    </header>
+
+    <!-- =========================
+      ESTADISTICAS
+    ========================== -->
+    <section class="stats-grid">
+      <article class="stat-card">
+        <span>Clases activas</span>
+        <strong>18</strong>
+        <small>6 dias disponibles</small>
+      </article>
+      <article class="stat-card">
+        <span>Jugadores</span>
+        <strong>124</strong>
+        <small>Usuarios registrados</small>
+      </article>
+      <article class="stat-card">
+        <span>Actividades</span>
+        <strong>9</strong>
+        <small>Fitness, futbol, natacion</small>
+      </article>
+      <article class="stat-card">
+        <span>Salas</span>
+        <strong>5</strong>
+        <small>Capacidad controlada</small>
+      </article>
+    </section>
+
+    <!-- =========================
+      FORMULARIOS DE GESTION
+    ========================== -->
+    <section class="content-grid">
+      <!-- =========================
+        CREAR CLASE
+      ========================== -->
+      <article class="panel wide">
+        <div class="panel-header">
+          <div>
+            <h2>Crear clase</h2>
+            <p>Formulario alineado con POST /v1/clases.</p>
+          </div>
+        </div>
+
+        <form class="form-grid" data-api="POST /v1/clases">
+          <label>
+            Descripcion
+            <input name="descripcion" type="text" placeholder="Funcional para adultos" />
+          </label>
+          <label>
+            Dia
+            <select name="dia">
+              <option>lunes</option>
+              <option>martes</option>
+              <option>miercoles</option>
+              <option>jueves</option>
+              <option>viernes</option>
+              <option>sabado</option>
+            </select>
+          </label>
+          <label>
+            Hora
+            <input name="hora" type="time" value="18:00" />
+          </label>
+          <label>
+            Capacidad
+            <input name="capacidadMax" type="number" min="1" placeholder="20" />
+          </label>
+          <label>
+            Actividad
+            <select name="actividad" required>
+              <option value="">Seleccionar actividad</option>
+              <option value="actividad-funcional-id">Funcional</option>
+              <option value="actividad-natacion-id">Natacion</option>
+              <option value="actividad-yoga-id">Yoga</option>
+            </select>
+          </label>
+          <label>
+            Sala
+            <select name="sala" required>
+              <option value="">Seleccionar sala</option>
+              <option value="sala-norte-id">Sala norte</option>
+              <option value="sala-piscina-id">Piscina</option>
+              <option value="sala-calma-id">Sala calma</option>
+            </select>
+          </label>
+          <button class="primary-btn" type="submit">Guardar clase</button>
+        </form>
+      </article>
+
+      <!-- =========================
+        CREAR ACTIVIDAD
+      ========================== -->
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Nueva actividad</h2>
+        </div>
+        <form class="stack-form" data-api="POST /v1/actividades">
+          <input name="nombre" type="text" placeholder="Nombre" />
+          <textarea name="descripcion" placeholder="Descripcion"></textarea>
+          <button class="secondary-btn" type="submit">Crear actividad</button>
+        </form>
+      </article>
+
+      <!-- =========================
+        CREAR SALA
+      ========================== -->
+      <article class="panel">
+        <div class="panel-header">
+          <h2>Nueva sala</h2>
+        </div>
+        <form class="stack-form" data-api="POST /v1/salas">
+          <input name="nombre" type="text" placeholder="Sala principal" />
+          <input name="capacidadMax" type="number" placeholder="40" />
+          <button class="secondary-btn" type="submit">Crear sala</button>
+        </form>
+      </article>
+    </section>
+
+    <!-- =========================
+      CLASES RECIENTES
+    ========================== -->
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Clases recientes</h2>
+          <p>Vista pensada para GET /v1/clases con filtros por dia y actividad.</p>
+        </div>
+        <div class="filters">
+          <select>
+            <option>Todos los dias</option>
+            <option>lunes</option>
+            <option>martes</option>
+            <option>miercoles</option>
+          </select>
+          <button class="ghost-btn" type="button">Filtrar</button>
+        </div>
+      </div>
+
+      <!-- =========================
+        TABLA DE CLASES
+      ========================== -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Actividad</th>
+              <th>Dia</th>
+              <th>Hora</th>
+              <th>Sala</th>
+              <th>Cupos</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Funcional</td>
+              <td>Lunes</td>
+              <td>18:00</td>
+              <td>Sala norte</td>
+              <td>14 / 20</td>
+              <td><button class="table-btn">Editar</button></td>
+            </tr>
+            <tr>
+              <td>Natacion</td>
+              <td>Miercoles</td>
+              <td>20:00</td>
+              <td>Piscina</td>
+              <td>8 / 12</td>
+              <td><button class="table-btn danger">Eliminar</button></td>
+            </tr>
+            <tr>
+              <td>Yoga</td>
+              <td>Viernes</td>
+              <td>09:00</td>
+              <td>Sala calma</td>
+              <td>11 / 16</td>
+              <td><button class="table-btn">Editar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

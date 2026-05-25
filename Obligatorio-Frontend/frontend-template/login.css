@@ -1,0 +1,338 @@
+/* =========================
+   VARIABLES / COLORES BASE
+========================= */
+:root {
+  --admin-main: #9ec2e6;
+  --admin-dark: #264b73;
+  --client-main: #f2b36d;
+  --client-dark: #704419;
+  --text: #172033;
+  --muted: #697386;
+  --line: #dfe5ee;
+  --surface: #ffffff;
+  --page: #f6f8fb;
+  --radius: 8px;
+  --shadow: 0 20px 60px rgba(23, 32, 51, 0.12);
+}
+
+/* =========================
+   RESET Y ESTILOS GLOBALES
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    linear-gradient(135deg, rgba(158, 194, 230, 0.58), rgba(242, 179, 109, 0.28)),
+    var(--page);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--admin-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* =========================
+   LAYOUT GENERAL AUTH
+========================= */
+.auth-layout {
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 28px;
+}
+
+/* =========================
+   CONTENEDORES HERO / FORM
+========================= */
+.auth-hero,
+.auth-card {
+  min-height: 680px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.auth-hero {
+  padding: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.auth-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* =========================
+   MARCA / LOGO
+========================= */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand span {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius);
+  background: var(--admin-main);
+  color: #112033;
+  font-weight: 800;
+}
+
+.brand small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+}
+
+/* =========================
+   TEXTO HERO
+========================= */
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--admin-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero-copy h1 {
+  max-width: 680px;
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.05;
+}
+
+.hero-copy p:last-child {
+  max-width: 560px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+/* =========================
+   LISTA DE FEATURES
+========================= */
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.feature-list article {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfcfe;
+}
+
+.feature-list span {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: rgba(242, 179, 109, 0.25);
+  color: var(--client-dark);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.feature-list p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* =========================
+   FORMULARIO LOGIN / REGISTRO
+========================= */
+.login-form {
+  display: grid;
+  gap: 18px;
+}
+
+.login-form h2 {
+  margin: 0;
+}
+
+.login-form p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+/* =========================
+   CAMPOS DEL FORMULARIO
+========================= */
+label {
+  display: grid;
+  gap: 7px;
+  color: #344054;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0 13px;
+  color: var(--text);
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--admin-main);
+  box-shadow: 0 0 0 4px rgba(158, 194, 230, 0.25);
+}
+
+/* =========================
+   OPCIONES DEL FORMULARIO
+========================= */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.check input {
+  width: auto;
+  min-height: auto;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.primary-btn,
+.secondary-btn {
+  display: inline-grid;
+  min-height: 46px;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 0 18px;
+  font-weight: 800;
+}
+
+.primary-btn {
+  background: var(--admin-dark);
+  color: #fff;
+}
+
+.secondary-btn {
+  background: rgba(242, 179, 109, 0.22);
+  color: var(--client-dark);
+  border-color: rgba(112, 68, 25, 0.12);
+}
+
+/* =========================
+   LINK A REGISTRO / LOGIN
+========================= */
+.register-link {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.register-link p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* =========================
+   GRILLA DE REGISTRO
+========================= */
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* =========================
+   RESPONSIVE TABLET
+========================= */
+@media (max-width: 980px) {
+  body {
+    align-items: start;
+  }
+
+  .auth-layout,
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero,
+  .auth-card {
+    min-height: auto;
+  }
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+@media (max-width: 620px) {
+  body {
+    padding: 16px;
+  }
+
+  .auth-hero,
+  .auth-card {
+    padding: 20px;
+  }
+
+  .hero-copy h1 {
+    font-size: 32px;
+  }
+
+  .register-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-options {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

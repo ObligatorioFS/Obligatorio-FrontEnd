@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Club Activo | Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <main class="auth-layout">
+    <!-- =========================
+      HERO / PRESENTACION
+    ========================== -->
+    <section class="auth-hero">
+      <!-- =========================
+        MARCA
+      ========================== -->
+      <div class="brand">
+        <span>CA</span>
+        <div>
+          <strong>Club Activo</strong>
+          <small>Social y deportivo</small>
+        </div>
+      </div>
+
+      <!-- =========================
+        TEXTO PRINCIPAL
+      ========================== -->
+      <div class="hero-copy">
+        <p class="eyebrow">Sistema de gestion</p>
+        <h1>Entrena, reserva y administra tu club desde un solo lugar.</h1>
+        <p>
+          Un acceso unico para jugadores y administradores, conectado con
+          clases, actividades, salas, rutinas y planes.
+        </p>
+      </div>
+
+      <!-- =========================
+        FEATURES
+      ========================== -->
+      <div class="feature-list">
+        <article>
+          <span>01</span>
+          <strong>Clases y cupos</strong>
+          <p>Consulta horarios, salas disponibles e inscripciones.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>Rutinas</strong>
+          <p>Solicita objetivos y revisa ejercicios personalizados.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>Administracion</strong>
+          <p>El sistema redirige segun el rol del usuario.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================
+      FORMULARIO LOGIN
+    ========================== -->
+    <section class="auth-card login-card">
+      <form class="login-form" data-api="POST /v1/login">
+        <div>
+          <h2>Iniciar sesion</h2>
+          <p>
+            Ingresa con tu email y contrasena. Si sos nuevo, registrate para acceder a todas las funciones del club. 
+          </p>
+        </div>
+
+        <label>
+          Email
+          <input type="email" name="email" placeholder="usuario@club.com" required />
+        </label>
+
+        <label>
+          Contrasena
+          <input type="password" name="password" placeholder="Tu contrasena" required />
+        </label>
+
+        <button class="primary-btn" type="submit">Entrar</button>
+      </form>
+
+      <!-- =========================
+        LINK A REGISTRO
+      ========================== -->
+      <div class="register-link">
+        <p>No tenes cuenta de jugador?</p>
+        <a class="secondary-btn" href="registro.html">Registrarse aqui</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
