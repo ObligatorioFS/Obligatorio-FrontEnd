@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Club Activo | Login</title>
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body>
-  <main class="auth-layout">
-    <!-- =========================
+import '../styles/Login.css'
+
+const Login = () => {
+  return(
+  <main className="auth-layout">
+    {/* =========================
       HERO / PRESENTACION
-    ========================== -->
-    <section class="auth-hero">
-      <!-- =========================
+    ========================== */}
+    <section className="auth-hero">
+      {/* =========================
         MARCA
-      ========================== -->
-      <div class="brand">
+      ========================== */}
+      <div className="brand">
         <span>CA</span>
         <div>
           <strong>Club Activo</strong>
@@ -23,11 +18,11 @@
         </div>
       </div>
 
-      <!-- =========================
+      {/* =========================
         TEXTO PRINCIPAL
-      ========================== -->
-      <div class="hero-copy">
-        <p class="eyebrow">Sistema de gestion</p>
+      ========================== */}
+      <div className="hero-copy">
+        <p className="eyebrow">Sistema de gestion</p>
         <h1>Entrena, reserva y administra tu club desde un solo lugar.</h1>
         <p>
           Un acceso unico para jugadores y administradores, conectado con
@@ -35,10 +30,10 @@
         </p>
       </div>
 
-      <!-- =========================
+      {/* =========================
         FEATURES
-      ========================== -->
-      <div class="feature-list">
+      ========================== */}
+      <div className="feature-list">
         <article>
           <span>01</span>
           <strong>Clases y cupos</strong>
@@ -57,11 +52,11 @@
       </div>
     </section>
 
-    <!-- =========================
+    {/* =========================
       FORMULARIO LOGIN
-    ========================== -->
-    <section class="auth-card login-card">
-      <form class="login-form" data-api="POST /v1/login">
+    ========================== */}
+    <section className="auth-card login-card">
+      <form className="login-form" data-api="POST /v1/login">
         <div>
           <h2>Iniciar sesion</h2>
           <p>
@@ -79,17 +74,20 @@
           <input type="password" name="password" placeholder="Tu contrasena" required />
         </label>
 
-        <button class="primary-btn" type="submit">Entrar</button>
+        <button className="primary-btn" type="submit">Entrar</button>
       </form>
 
-      <!-- =========================
+      {/* =========================
         LINK A REGISTRO
-      ========================== -->
-      <div class="register-link">
+      ========================== */}
+      <div className="register-link">
         <p>No tenes cuenta de jugador?</p>
-        <a class="secondary-btn" href="registro.html">Registrarse aqui</a>
+        <a className="secondary-btn" href="registro.html">Registrarse aqui</a>
       </div>
     </section>
   </main>
-</body>
-</html>
+  ) 
+
+} 
+
+export default Login
