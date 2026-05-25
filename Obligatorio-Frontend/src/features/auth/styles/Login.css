@@ -30,6 +30,7 @@ body {
   padding: 32px;
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+  color-scheme: light;
   background:
     linear-gradient(135deg, rgba(158, 194, 230, 0.58), rgba(242, 179, 109, 0.28)),
     var(--page);
@@ -58,6 +59,18 @@ a {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 28px;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.auth-layout h1,
+.auth-layout h2 {
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 /* =========================
@@ -127,6 +140,7 @@ a {
 .hero-copy h1 {
   max-width: 680px;
   margin: 0;
+  color: var(--text);
   font-size: 44px;
   line-height: 1.05;
 }
@@ -185,6 +199,9 @@ a {
 
 .login-form h2 {
   margin: 0;
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1.18;
 }
 
 .login-form p {
@@ -209,6 +226,7 @@ input {
   border: 1px solid var(--line);
   border-radius: 7px;
   padding: 0 13px;
+  background: #fff;
   color: var(--text);
   outline: none;
 }

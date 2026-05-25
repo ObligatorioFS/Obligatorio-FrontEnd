@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Club Activo | Admin</title>
-  <link rel="stylesheet" href="dashboard.css" />
-</head>
-<body class="dashboard theme-admin">
-  <!-- =========================
+import '../styles/DashboardAdmin.css'
+
+const DashboardAdmin = () => {
+     return (
+    <div className="dashboard theme-admin">
+  {/* =========================
     HEADER SUPERIOR
-  ========================== -->
-  <header class="dashboard-header">
-    <div class="brand-mark">
+  ========================== */}
+  <header className="dashboard-header">
+    <div className="brand-mark">
       <span>CA</span>
       <div>
         <strong>Club Activo</strong>
@@ -19,63 +15,63 @@
       </div>
     </div>
 
-    <button class="logout-btn" type="button">Cerrar sesion</button>
+    <button className="logout-btn" type="button">Cerrar sesion</button>
   </header>
 
-  <main class="main-content">
-    <!-- =========================
+  <main className="main-content">
+    {/* =========================
       BANNER PRINCIPAL
-    ========================== -->
-    <header class="topbar">
+    ========================== */}
+    <header className="topbar">
       <div>
-        <p class="eyebrow">Administrador</p>
+        <p className="eyebrow">Administrador</p>
         <h1>Gestion del club</h1>
       </div>
-      <button class="primary-btn compact" type="button">Nueva clase</button>
+      <button className="primary-btn compact" type="button">Nueva clase</button>
     </header>
 
-    <!-- =========================
+    {/* =========================
       ESTADISTICAS
-    ========================== -->
-    <section class="stats-grid">
-      <article class="stat-card">
+    ========================== */}
+    <section className="stats-grid">
+      <article className="stat-card">
         <span>Clases activas</span>
         <strong>18</strong>
         <small>6 dias disponibles</small>
       </article>
-      <article class="stat-card">
+      <article className="stat-card">
         <span>Jugadores</span>
         <strong>124</strong>
         <small>Usuarios registrados</small>
       </article>
-      <article class="stat-card">
+      <article className="stat-card">
         <span>Actividades</span>
         <strong>9</strong>
         <small>Fitness, futbol, natacion</small>
       </article>
-      <article class="stat-card">
+      <article className="stat-card">
         <span>Salas</span>
         <strong>5</strong>
         <small>Capacidad controlada</small>
       </article>
     </section>
 
-    <!-- =========================
+    {/* =========================
       FORMULARIOS DE GESTION
-    ========================== -->
-    <section class="content-grid">
-      <!-- =========================
+    ========================== */}
+    <section className="content-grid">
+      {/* =========================
         CREAR CLASE
-      ========================== -->
-      <article class="panel wide">
-        <div class="panel-header">
+      ========================== */}
+      <article className="panel wide">
+        <div className="panel-header">
           <div>
             <h2>Crear clase</h2>
             <p>Formulario alineado con POST /v1/clases.</p>
           </div>
         </div>
 
-        <form class="form-grid" data-api="POST /v1/clases">
+        <form className="form-grid" data-api="POST /v1/clases">
           <label>
             Descripcion
             <input name="descripcion" type="text" placeholder="Funcional para adultos" />
@@ -93,7 +89,7 @@
           </label>
           <label>
             Hora
-            <input name="hora" type="time" value="18:00" />
+            <input name="hora" type="time" defaultValue="18:00" />
           </label>
           <label>
             Capacidad
@@ -117,63 +113,63 @@
               <option value="sala-calma-id">Sala calma</option>
             </select>
           </label>
-          <button class="primary-btn" type="submit">Guardar clase</button>
+          <button className="primary-btn" type="submit">Guardar clase</button>
         </form>
       </article>
 
-      <!-- =========================
+      {/* =========================
         CREAR ACTIVIDAD
-      ========================== -->
-      <article class="panel">
-        <div class="panel-header">
+      ========================== */}
+      <article className="panel">
+        <div className="panel-header">
           <h2>Nueva actividad</h2>
         </div>
-        <form class="stack-form" data-api="POST /v1/actividades">
+        <form className="stack-form" data-api="POST /v1/actividades">
           <input name="nombre" type="text" placeholder="Nombre" />
           <textarea name="descripcion" placeholder="Descripcion"></textarea>
-          <button class="secondary-btn" type="submit">Crear actividad</button>
+          <button className="secondary-btn" type="submit">Crear actividad</button>
         </form>
       </article>
 
-      <!-- =========================
+      {/* =========================
         CREAR SALA
-      ========================== -->
-      <article class="panel">
-        <div class="panel-header">
+      ========================== */}
+      <article className="panel">
+        <div className="panel-header">
           <h2>Nueva sala</h2>
         </div>
-        <form class="stack-form" data-api="POST /v1/salas">
+        <form className="stack-form" data-api="POST /v1/salas">
           <input name="nombre" type="text" placeholder="Sala principal" />
           <input name="capacidadMax" type="number" placeholder="40" />
-          <button class="secondary-btn" type="submit">Crear sala</button>
+          <button className="secondary-btn" type="submit">Crear sala</button>
         </form>
       </article>
     </section>
 
-    <!-- =========================
+    {/* =========================
       CLASES RECIENTES
-    ========================== -->
-    <section class="panel">
-      <div class="panel-header">
+    ========================== */}
+    <section className="panel">
+      <div className="panel-header">
         <div>
           <h2>Clases recientes</h2>
           <p>Vista pensada para GET /v1/clases con filtros por dia y actividad.</p>
         </div>
-        <div class="filters">
+        <div className="filters">
           <select>
             <option>Todos los dias</option>
             <option>lunes</option>
             <option>martes</option>
             <option>miercoles</option>
           </select>
-          <button class="ghost-btn" type="button">Filtrar</button>
+          <button className="ghost-btn" type="button">Filtrar</button>
         </div>
       </div>
 
-      <!-- =========================
+      {/* =========================
         TABLA DE CLASES
-      ========================== -->
-      <div class="table-wrap">
+      ========================== */}
+      <div className="table-wrap">
         <table>
           <thead>
             <tr>
@@ -192,7 +188,7 @@
               <td>18:00</td>
               <td>Sala norte</td>
               <td>14 / 20</td>
-              <td><button class="table-btn">Editar</button></td>
+              <td><button className="table-btn">Editar</button></td>
             </tr>
             <tr>
               <td>Natacion</td>
@@ -200,7 +196,7 @@
               <td>20:00</td>
               <td>Piscina</td>
               <td>8 / 12</td>
-              <td><button class="table-btn danger">Eliminar</button></td>
+              <td><button className="table-btn danger">Eliminar</button></td>
             </tr>
             <tr>
               <td>Yoga</td>
@@ -208,12 +204,16 @@
               <td>09:00</td>
               <td>Sala calma</td>
               <td>11 / 16</td>
-              <td><button class="table-btn">Editar</button></td>
+              <td><button className="table-btn">Editar</button></td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
   </main>
-</body>
-</html>
+    </div>
+    )
+            
+}
+
+export default DashboardAdmin
