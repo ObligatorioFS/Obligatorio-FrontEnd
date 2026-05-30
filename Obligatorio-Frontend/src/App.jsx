@@ -1,6 +1,6 @@
 //import './App.css'
-//import DashboardAdmin from './features/admin/pages/DashboardAdmin'
-import DashboardCliente from './features/cliente/pages/DashboardCliente'
+import DashboardAdmin from './features/admin/pages/DashboardAdmin'
+//import DashboardCliente from './features/cliente/pages/DashboardCliente'
 //import Login from './auth/pages/Login'
 //import Registro from './features/auth/pages/Registro'
 
@@ -11,8 +11,8 @@ function App() {
     <>
     {/*<Registro />*/}
      {/*<Login />*/}
-      {/*<DashboardAdmin / >*/} 
-      <DashboardCliente />
+      <DashboardAdmin / >
+      {/*<DashboardCliente /> */}
     </>
   )
 }

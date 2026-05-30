@@ -27,7 +27,7 @@ const DashboardAdmin = () => {
         <p className="eyebrow">Administrador</p>
         <h1>Gestion del club</h1>
       </div>
-      <button className="primary-btn compact" type="button">Nueva clase</button>
+      <button className="primary-btn compact" type="button">Gestionar cupos</button>
     </header>
 
     {/* =========================
@@ -209,6 +209,106 @@ const DashboardAdmin = () => {
           </tbody>
         </table>
       </div>
+    </section>
+
+    {/* =========================
+      ADMINISTRACION RAPIDA
+    ========================== */}
+    <section className="quick-admin-grid">
+      {/* =========================
+        SALAS
+      ========================== */}
+      <article className="panel quick-panel">
+        <div className="panel-header">
+          <h2>Salas</h2>
+        </div>
+
+        <div className="quick-list">
+          <div className="quick-item">
+            <div>
+              <strong>Sala norte</strong>
+              <span>20 cupos</span>
+            </div>
+            <button className="table-btn" type="button">Editar</button>
+          </div>
+          <div className="quick-item">
+            <div>
+              <strong>Piscina</strong>
+              <span>12 cupos</span>
+            </div>
+            <button className="table-btn" type="button">Editar</button>
+          </div>
+          <div className="quick-item">
+            <div>
+              <strong>Sala calma</strong>
+              <span>16 cupos</span>
+            </div>
+            <button className="table-btn" type="button">Editar</button>
+          </div>
+        </div>
+      </article>
+
+      {/* =========================
+        ACTIVIDADES
+      ========================== */}
+      <article className="panel quick-panel">
+        <div className="panel-header">
+          <h2>Actividades</h2>
+        </div>
+
+        <div className="quick-list">
+          <div className="quick-item">
+            <div>
+              <strong>Funcional</strong>
+              <span>6 clases activas</span>
+            </div>
+            <button className="table-btn" type="button">Editar</button>
+          </div>
+          <div className="quick-item">
+            <div>
+              <strong>Natacion</strong>
+              <span>3 clases activas</span>
+            </div>
+            <button className="table-btn" type="button">Editar</button>
+          </div>
+          <div className="quick-item">
+            <div>
+              <strong>Yoga</strong>
+              <span>2 clases activas</span>
+            </div>
+            <button className="table-btn" type="button">Editar</button>
+          </div>
+        </div>
+      </article>
+
+      {/* =========================
+        RUTINAS PENDIENTES
+      ========================== */}
+      <article className="panel quick-panel">
+        <div className="panel-header">
+          <div>
+            <h2>Rutinas pendientes</h2>
+            <p>Solicitudes esperando ejercicios.</p>
+          </div>
+        </div>
+
+        <div className="quick-list">
+          <div className="quick-item">
+            <div>
+              <strong>Fuerza general</strong>
+              <span>Jugador: Ana Perez</span>
+            </div>
+            <button className="secondary-btn compact" type="button">Agregar ejercicios</button>
+          </div>
+          <div className="quick-item">
+            <div>
+              <strong>Resistencia</strong>
+              <span>Jugador: Juan Gomez</span>
+            </div>
+            <button className="secondary-btn compact" type="button">Agregar ejercicios</button>
+          </div>
+        </div>
+      </article>
     </section>
   </main>
     </div>
