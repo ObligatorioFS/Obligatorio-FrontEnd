@@ -1,0 +1,71 @@
+/* =========================
+   HEADER SUPERIOR
+========================= */
+.dashboard-header {
+  min-height: 76px;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid var(--line, #dfe5ee);
+  background: var(--surface, #ffffff);
+}
+
+.dashboard-header.theme-admin {
+  --theme-main: #9ec2e6;
+}
+
+.dashboard-header.theme-client {
+  --theme-main: #f2b36d;
+}
+
+/* =========================
+   MARCA / LOGO
+========================= */
+.brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark span {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  background: var(--theme-main);
+  color: #111827;
+  font-weight: 800;
+}
+
+.brand-mark small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted, #6b7280);
+}
+
+/* =========================
+   BOTON CERRAR SESION
+========================= */
+.logout-btn {
+  min-height: 42px;
+  border: 1px solid var(--line, #dfe5ee);
+  border-radius: 7px;
+  padding: 0 16px;
+  background: #fff;
+  color: var(--text, #172033);
+  font-weight: 700;
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+@media (max-width: 620px) {
+  .dashboard-header {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 16px;
+  }
+}

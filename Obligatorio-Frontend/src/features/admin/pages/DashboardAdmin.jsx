@@ -1,22 +1,22 @@
 import '../styles/DashboardAdmin.css'
-
+import { useNavigate } from 'react-router'
+import { useEffect} from 'react'
 const DashboardAdmin = () => {
+   
+   const navigate = useNavigate()
+
+   useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            //redirijo como?
+            //hook de useNavigate
+            navigate("/login")
+            return
+        }
+    }, [])
+
+
      return (
     <div className="dashboard theme-admin">
-  {/* =========================
-    HEADER SUPERIOR
-  ========================== */}
-  <header className="dashboard-header">
-    <div className="brand-mark">
-      <span>CA</span>
-      <div>
-        <strong>Club Activo</strong>
-        <small>Panel Admin</small>
-      </div>
-    </div>
-
-    <button className="logout-btn" type="button">Cerrar sesion</button>
-  </header>
 
   <main className="main-content">
     {/* =========================

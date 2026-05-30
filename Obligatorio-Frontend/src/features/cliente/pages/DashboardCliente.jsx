@@ -1,23 +1,24 @@
+import { useEffect } from 'react'
 import '../styles/DashboardCliente.css'
+import { useNavigate } from 'react-router'
 
 const DashboardCliente = () => {
+
+   const navigate = useNavigate()
+  
+     useEffect(() => {
+          if (!localStorage.getItem('token')) {
+              //redirijo como?
+              //hook de useNavigate
+              navigate("/login")
+              return
+          }
+      }, [])
+
+
+
   return (
     <div className="dashboard theme-client">
-      {/* =========================
-        HEADER SUPERIOR
-      ========================== */}
-      <header className="dashboard-header">
-        <div className="brand-mark">
-          <span>CA</span>
-          <div>
-            <strong>Club Activo</strong>
-            <small>Jugador</small>
-          </div>
-        </div>
-
-        <button className="logout-btn" type="button">Cerrar sesion</button>
-      </header>
-
       <main className="main-content">
         {/* =========================
           BANNER PRINCIPAL
