@@ -88,7 +88,6 @@ a {
 /* =========================
    SUPERFICIES CLIENTE
 ========================= */
-.topbar,
 .panel,
 .stat-card,
 .routine-card,
@@ -98,38 +97,6 @@ a {
   background: var(--surface);
 }
 
-/* =========================
-   BANNER PRINCIPAL
-========================= */
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 24px;
-  background: linear-gradient(135deg, var(--theme-soft), #ffffff);
-}
-
-/* =========================
-   TEXTO DESTACADO / EYEBROW
-========================= */
-.eyebrow {
-  margin: 0 0 10px;
-  color: var(--theme-dark);
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0;
-}
-
-.topbar h1 {
-  margin: 0;
-  color: var(--text);
-  font-size: 40px;
-  line-height: 1.05;
-}
-
-.topbar p,
 .panel-header p {
   color: var(--muted);
 }
@@ -438,7 +405,6 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 
-  .topbar,
   .panel-header {
     align-items: stretch;
     flex-direction: column;
@@ -462,13 +428,8 @@ textarea:focus {
     padding: 16px;
   }
 
-  .panel,
-  .topbar {
+  .panel {
     padding: 18px;
-  }
-
-  .topbar h1 {
-    font-size: 31px;
   }
 
   .schedule-grid {

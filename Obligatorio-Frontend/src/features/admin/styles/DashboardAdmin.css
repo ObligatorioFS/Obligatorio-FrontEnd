@@ -89,82 +89,14 @@ a {
 /* =========================
    SUPERFICIES ADMIN
 ========================= */
-.topbar,
-.panel,
-.stat-card {
+.panel {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
 }
 
-/* =========================
-   BANNER PRINCIPAL
-========================= */
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 24px;
-  background: linear-gradient(135deg, var(--theme-soft), #ffffff);
-}
-
-/* =========================
-   TEXTO DESTACADO / EYEBROW
-========================= */
-.eyebrow {
-  margin: 0 0 10px;
-  color: var(--theme-dark);
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0;
-}
-
-.topbar h1 {
-  margin: 0;
-  color: var(--text);
-  font-size: 40px;
-  line-height: 1.05;
-}
-
-.topbar p,
 .panel-header p {
   color: var(--muted);
-}
-
-/* =========================
-   TARJETAS DE ESTADISTICAS
-========================= */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.stat-card {
-  padding: 18px;
-}
-
-.stat-card span,
-.stat-card small {
-  color: var(--muted);
-}
-
-.stat-card strong {
-  display: block;
-  margin: 8px 0 4px;
-  color: var(--theme-dark);
-  font-size: 30px;
-}
-
-/* =========================
-   GRILLA DE CONTENIDO ADMIN
-========================= */
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 0.55fr;
-  gap: 16px;
 }
 
 /* =========================
@@ -173,10 +105,6 @@ a {
 .panel {
   min-width: 0;
   padding: 20px;
-}
-
-.panel.wide {
-  grid-row: span 2;
 }
 
 .panel h2 {
@@ -196,23 +124,6 @@ a {
 
 .panel-header p {
   margin: 6px 0 0;
-}
-
-/* =========================
-   FORMULARIOS DE GESTION
-========================= */
-.form-grid,
-.stack-form {
-  display: grid;
-  gap: 14px;
-}
-
-.form-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.form-grid .primary-btn {
-  grid-column: 1 / -1;
 }
 
 label {
@@ -286,108 +197,14 @@ textarea:focus {
   width: fit-content;
 }
 
-/* =========================
-   FILTROS
-========================= */
-.filters {
-  display: flex;
-  gap: 10px;
-}
-
-/* =========================
-   TABLAS
-========================= */
-.table-wrap {
-  width: 100%;
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  min-width: 720px;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  padding: 14px 12px;
-  border-bottom: 1px solid var(--line);
-  text-align: left;
-  white-space: nowrap;
-}
-
-th {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.table-btn {
-  min-height: 34px;
-}
-
 .table-btn.danger {
   color: var(--danger);
-}
-
-/* =========================
-   ADMINISTRACION RAPIDA
-========================= */
-.quick-admin-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.quick-panel {
-  display: grid;
-  align-content: start;
-  gap: 14px;
-}
-
-.quick-panel .panel-header {
-  margin-bottom: 0;
-}
-
-.quick-list {
-  display: grid;
-  gap: 10px;
-}
-
-.quick-item {
-  min-width: 0;
-  padding: 12px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fbfcfe;
-}
-
-.quick-item strong,
-.quick-item span {
-  display: block;
-}
-
-.quick-item span {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.35;
 }
 
 /* =========================
    RESPONSIVE TABLET
 ========================= */
 @media (max-width: 960px) {
-  .content-grid,
-  .quick-admin-grid,
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .topbar,
   .panel-header {
     align-items: stretch;
     flex-direction: column;
@@ -402,25 +219,8 @@ th {
     padding: 16px;
   }
 
-  .panel,
-  .topbar {
+  .panel {
     padding: 18px;
   }
 
-  .topbar h1 {
-    font-size: 31px;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .filters {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .quick-item {
-    grid-template-columns: 1fr;
-  }
 }

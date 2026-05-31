@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import '../styles/DashboardCliente.css'
 import { useNavigate } from 'react-router'
+import Banner from '../../shared/components/Banner'
 
 const DashboardCliente = () => {
 
@@ -20,17 +21,7 @@ const DashboardCliente = () => {
   return (
     <div className="dashboard theme-client">
       <main className="main-content">
-        {/* =========================
-          BANNER PRINCIPAL
-        ========================== */}
-        <header className="topbar">
-          <div>
-            <p className="eyebrow">Hola, jugador</p>
-            <h1>Tu actividad en el club</h1>
-            <p>Revisa tus clases, solicita rutinas y administra tu plan.</p>
-          </div>
-          <button className="primary-btn compact" type="button">Cambiar a plan plus</button>
-        </header>
+        <Banner />
 
         {/* =========================
           ESTADISTICAS

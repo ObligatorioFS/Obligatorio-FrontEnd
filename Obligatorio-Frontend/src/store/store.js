@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { clasesSlice } from "../features/clasesSlice";
+import clasesReducer from "../features/clasesSlice";
+import salasReducer from "../features/salasSlice";
 
 
 export const store = configureStore({
     reducer: {
-       clases: clasesSlice
+       clases: clasesReducer,
+       salas: salasReducer
     }
 })
