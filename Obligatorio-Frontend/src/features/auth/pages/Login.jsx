@@ -19,16 +19,19 @@ const Login = () => {
     const [cargando, setCargando] = useState(false)
 
      useEffect(() => {
-        if (localStorage.getItem("token")) {
-            const payload = jwtDecode(localStorage.getItem("token"));
-            if(payload.rolUsu === "admin"){
-              navigate('/dashboardAdmin')
-            }else{
-              navigate('/dashboardCliente')
-            }
-            return
+         const token = localStorage.getItem('token')
+         if (!token) return
+         try {
+         const payload = jwtDecode(token)
+         if (payload.rolUsu === 'admin') {
+         navigate('/dashboardAdmin')
+        }else{
+         navigate('/dashboardCliente')
         }
-    }, [])
+        }catch{
+        localStorage.clear()
+      }
+   }, [])
 
     const handleOnClickLogin = data => {
       setCargando(true)
@@ -67,7 +70,7 @@ const Login = () => {
     <main className="auth-layout">
 
       <section className="auth-card login-card">
-        <form onSubmit={handleSubmit(handleOnClickLogin)} className="auth-form" data-api="POST /v1/login">
+        <form onSubmit={handleSubmit(handleOnClickLogin)} className="auth-form">
           <div className="brand login-brand">
             <span>CA</span>
             <div>
@@ -88,7 +91,6 @@ const Login = () => {
             <input {...register('email',
               {
                 required: "El email es obligatorio",
-                pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'El formato del email no es válido'}
               }
             )} disabled={cargando} type="email" name="email" placeholder="usuario@club.com" required/>
             <MensajeError mensaje={errors.email?.message} />
@@ -96,13 +98,7 @@ const Login = () => {
           <label>Contraseña
             <input {...register('password',
              {
-               required: 'La contraseña es obligatoria',
-               minLength: {value: 8, message: 'La contraseña debe tener mínimo 8 caracteres'
-             },
-              maxLength: {value: 30, message: 'La contraseña debe tener máximo 30 caracteres'
-             },
-              pattern: { value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, message: 'Debe tener al menos una mayúscula, una minúscula y un número'
-             }
+               required: 'La contraseña es obligatoria'
              })} disabled={cargando} type="password" name="password" placeholder="Tu contraseña" required/>
             <MensajeError mensaje={errors.password?.message} />
           </label>
