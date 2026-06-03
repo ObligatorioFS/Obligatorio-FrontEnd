@@ -1,5 +1,8 @@
 
 const RutinasPendientes = () => {
+  
+
+
   return (
 
       <article className="panel quick-panel rutinas-pendientes">

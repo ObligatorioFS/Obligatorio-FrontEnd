@@ -1,6 +1,80 @@
 import "../styles/CrearClase.css"
+import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
+import { useForm } from 'react-hook-form'
+import { agregarClase } from '../../clasesSlice'
+
+
 
 const CrearClase = () => {
+  const dispatch = useDispatch()
+
+  const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isValid, isSubmitted }
+  } = useForm({ mode: "onSubmit" })
+
+  const [cargando, setCargando] = useState(false)
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
+
+  const handleOnClickCrearClase = (data) => {
+    const nuevaClase = {
+      descripcion: data.descripcion,
+      dia: data.dia,
+      hora: data.hora,
+      capacidadMax: Number(data.capacidadMax),
+      actividad: data.actividad,
+      sala: data.sala
+    }
+    console.log("Datos enviados:", nuevaClase)
+
+    fetch('https://obligatorio-full-stack-ecru.vercel.app/v1/clases', {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.getItem('token')
+            },
+            method: "POST",
+            body: JSON.stringify(nuevaClase)
+        }).then(async res => {
+            if (res.ok) {
+                return res.json()
+            } else if (res.status == 401) {
+                localStorage.removeItem('token')
+                navigate('/login')
+            } else {
+                const error = await res.json()
+                throw new Error(error.message || 'Error al crear la nota')
+            }
+        }).then(claseRes => {
+            const actividadObj = typeof claseRes.actividad === 'object' && claseRes.actividad !== null
+              ? claseRes.actividad
+              : actividades.find(a => a._id === claseRes.actividad)
+
+            const salaObj = typeof claseRes.sala === 'object' && claseRes.sala !== null
+              ? claseRes.sala
+              : salas.find(s => s._id === claseRes.sala)
+
+            dispatch(agregarClase({
+              ...claseRes,
+              actividad: actividadObj,
+              sala: salaObj
+            }))
+            reset()
+            return
+        }).catch(e => {
+            setError(e.message)
+        }).finally(() => setCargando(false))
+  }
+  
+
+  
+  const actividades = useSelector(state => state.actividades.actividades)
+  const salas = useSelector(state => state.salas.salas)
+
   return (
       <article className="panel crear-clase">
         <div className="panel-header">
@@ -10,14 +84,20 @@ const CrearClase = () => {
           </div>
         </div>
 
-        <form className="form-grid" data-api="POST /v1/clases">
+        <form onSubmit={handleSubmit(handleOnClickCrearClase)} className="form-grid" data-api="POST /v1/clases">
           <label>
             Descripcion
-            <input name="descripcion" type="text" placeholder="Funcional para adultos" />
+            <input {...register('descripcion',
+                    {
+                        required: "La descripcion es requerida",
+                        minLength: { value: 2, message: "La descripcion debe tener al menos 2 caracteres" },
+                        maxLength: { value: 200, message: "La descripcion debe tener como máximo 200 caracteres" }
+                    }
+                )}name="descripcion" type="text" placeholder="Funcional para adultos" />
           </label>
           <label>
             Dia
-            <select name="dia">
+            <select {...register('dia')} name="dia">
               <option>lunes</option>
               <option>martes</option>
               <option>miercoles</option>
@@ -28,33 +108,55 @@ const CrearClase = () => {
           </label>
           <label>
             Hora
-            <input name="hora" type="time" defaultValue="18:00" />
+            <input {...register('hora')} name="hora" type="time" defaultValue="18:00" />
           </label>
           <label>
             Capacidad
-            <input name="capacidadMax" type="number" min="1" placeholder="20" />
+            <input {...register('capacidadMax')} name="capacidadMax" type="number" min="1" placeholder="" />
           </label>
           <label>
             Actividad
-            <select name="actividad" required>
+            <select {...register('actividad', {
+              required: "Debes seleccionar una actividad",
+              validate: (value) => value !== "" || "Debes seleccionar una actividad"
+            })} name="actividad">
               <option value="">Seleccionar actividad</option>
-              <option value="actividad-funcional-id">Funcional</option>
-              <option value="actividad-natacion-id">Natacion</option>
-              <option value="actividad-yoga-id">Yoga</option>
+              {actividades.map(actividad => (
+                <option key={actividad._id} value={actividad._id}>
+                  {actividad.nombre}
+                </option>
+              ))}
             </select>
           </label>
           <label>
             Sala
-            <select name="sala" required>
+            <select {...register('sala', {
+              required: "Debes seleccionar una sala",
+              validate: (value) => value !== "" || "Debes seleccionar una sala"
+            })} name="sala">
               <option value="">Seleccionar sala</option>
-              <option value="sala-norte-id">Sala norte</option>
-              <option value="sala-piscina-id">Piscina</option>
-              <option value="sala-calma-id">Sala calma</option>
+              {salas.map(sala => (
+                <option key={sala._id} value={sala._id}>
+                  {sala.nombre}
+                </option>
+              ))}
             </select>
           </label>
           <button className="primary-btn" type="submit">Guardar clase</button>
         </form>
+        {(error || (isSubmitted && !isValid)) &&
+                <div className="form-error">
+                    {error && <p>{error}</p>}
+                    {errors.descripcion && <p>{errors.descripcion.message}</p>}
+                    {errors.dia && <p>{errors.dia.message}</p>}
+                    {errors.hora && <p>{errors.hora.message}</p>}
+                    {errors.capacidadMax && <p>{errors.capacidadMax.message}</p>}
+                    {errors.actividad && <p>{errors.actividad.message}</p>}
+                    {errors.sala && <p>{errors.sala.message}</p>}
+                </div>
+        }
       </article>
+  
   )
 }
 
