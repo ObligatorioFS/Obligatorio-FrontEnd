@@ -10,6 +10,7 @@ const Sala = ({ sala }) => {
   const [editando, setEditando] = useState(false)
   const [mensaje, setMensaje] = useState("")
   const [mensajeExito, setMensajeExito] = useState("")
+   const [cargando, setCargando] = useState(false)
   const inputNombreRef = useRef()
   const inputCapacidadMaxRef = useRef()
 
@@ -34,6 +35,7 @@ const Sala = ({ sala }) => {
     setMensaje("Nombre y capacidad obligatorios")
     return
   }
+  setCargando(true)
 
   fetch(`https://obligatorio-full-stack-ecru.vercel.app/v1/salas/${sala._id}`, {
     method: "PUT",
@@ -65,7 +67,7 @@ const Sala = ({ sala }) => {
     })
     .catch(error => {
       setMensaje(error.message)
-    })
+    }).finally(() => setCargando(false))
 }
 
 if (!editando) {
@@ -76,7 +78,7 @@ if (!editando) {
         <span>{sala.capacidadMax} cupos</span>
       </div>
 
-      <button onClick={handleOnClickEditar} className="table-btn">
+      <button onClick={handleOnClickEditar} className="table-btn icon-btn edit-btn" aria-label="Editar sala">
         Editar
       </button>
       <MensajeAlerta mensaje={mensajeExito} tipo="exito" flotante />
@@ -94,9 +96,8 @@ if (!editando) {
         />
         <MensajeAlerta mensaje={mensaje} />
       </div>
-
-      <button onClick={handleOnClickGuardarEdicion} className="table-btn">
-        Guardar
+      <button onClick={handleOnClickGuardarEdicion} className="table-btn save-btn" disabled={cargando} >
+        {cargando ? "Guardando..." : "Guardar"}
       </button>
     </div>
   )

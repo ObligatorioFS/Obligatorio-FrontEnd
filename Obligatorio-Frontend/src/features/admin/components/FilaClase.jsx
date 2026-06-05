@@ -1,6 +1,6 @@
+import { Link } from "react-router";
 
-
-const FilaClase = ({/*id*/ actividad,dia,hora,sala,capacidadMax,inscriptos}) => {
+const FilaClase = ({ id, actividad, dia, hora, sala, capacidadMax, inscriptos }) => {
   return (
     <tr>
       <td>{actividad?.nombre || 'Sin actividad'}</td>
@@ -9,12 +9,12 @@ const FilaClase = ({/*id*/ actividad,dia,hora,sala,capacidadMax,inscriptos}) => 
       <td>{sala?.nombre || 'Sin sala'}</td>
       <td>{inscriptos} / {capacidadMax}</td>
       <td>
-        <button className="table-btn" type="button">
+        <Link className="table-btn" to={`/dashboardAdmin/clases/${id}`}>
           Ver detalles
-        </button>
+        </Link>
       </td>
     </tr>
   )
 }
 
-export default FilaClase
+export default FilaClase;

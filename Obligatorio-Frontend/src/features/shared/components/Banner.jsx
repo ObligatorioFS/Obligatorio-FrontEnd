@@ -18,9 +18,15 @@ const Banner = () => {
         )}
       </div>
 
-      <button className="primary-btn compact" type="button">
-        {esAdmin ? 'Gestionar cupos' : 'Cambiar a Plan Premium'}
-      </button>
+      {esAdmin ? (
+        <a className="primary-btn compact" href="#clases-registradas">
+          Gestionar cupos
+        </a>
+      ) : (
+        <button className="primary-btn compact" type="button">
+          Cambiar a Plan Premium
+        </button>
+      )}
     </header>
   )
 }

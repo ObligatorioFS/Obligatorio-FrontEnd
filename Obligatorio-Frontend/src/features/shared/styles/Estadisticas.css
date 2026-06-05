@@ -5,10 +5,18 @@
 }
 
 .stat-card {
+  --stat-accent: var(--theme-dark);
   padding: 18px;
   border: 1px solid var(--line);
+  border-top: 4px solid var(--stat-accent);
   border-radius: var(--radius);
   background: var(--surface);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(23, 32, 51, 0.12);
 }
 
 .stat-card span,
@@ -19,11 +27,58 @@
 .stat-card strong {
   display: block;
   margin: 8px 0 4px;
-  color: var(--theme-dark);
+  color: var(--stat-accent);
   font-size: 30px;
 }
 
+.stat-card--default {
+  --stat-accent: var(--theme-dark);
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.stats-grid .stat-card.stat-card--clases {
+  --stat-accent: #2563eb;
+  border-color: #b7d4f0;
+  border-top-color: var(--stat-accent);
+  background: linear-gradient(180deg, #eef6ff 0%, #ffffff 100%);
+}
+
+.stats-grid .stat-card.stat-card--actividades {
+  --stat-accent: #16803c;
+  border-color: #b8e3c2;
+  border-top-color: var(--stat-accent);
+  background: linear-gradient(180deg, #effaf1 0%, #ffffff 100%);
+}
+
+.stats-grid .stat-card.stat-card--salas {
+  --stat-accent: #b45309;
+  border-color: #f2c98d;
+  border-top-color: var(--stat-accent);
+  background: linear-gradient(180deg, #fff5e6 0%, #ffffff 100%);
+}
+
+.stats-grid .stat-card.stat-card--rutinas {
+  --stat-accent: #7c3aed;
+  border-color: #d1b8f5;
+  border-top-color: var(--stat-accent);
+  background: linear-gradient(180deg, #f5efff 0%, #ffffff 100%);
+}
+
+.stats-grid .stat-card.stat-card--clases strong,
+.stats-grid .stat-card.stat-card--actividades strong,
+.stats-grid .stat-card.stat-card--salas strong,
+.stats-grid .stat-card.stat-card--rutinas strong {
+  color: var(--stat-accent);
+}
+
 @media (max-width: 960px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
   .stats-grid {
     grid-template-columns: 1fr;
   }

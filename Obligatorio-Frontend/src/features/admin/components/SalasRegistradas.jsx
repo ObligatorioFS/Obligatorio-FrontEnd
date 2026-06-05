@@ -40,6 +40,13 @@ const SalasRegistradas = () => {
   return (
     
       <article className="panel quick-panel salas-registradas">
+         <div className="panel-header">
+          <div>
+            <h2>Salas registradas</h2>
+            <p>Espacios disponibles para clases.</p>
+          </div>
+        </div>
+
          <div className="quick-list">
          {salas.length> 0 ?
                     salas.map(sala => <Sala key={sala._id} sala={sala} />)

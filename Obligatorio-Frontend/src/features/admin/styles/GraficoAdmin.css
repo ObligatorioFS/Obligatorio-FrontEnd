@@ -1,0 +1,20 @@
+.grafico-admin {
+  border-top: 4px solid #2563eb;
+  background: linear-gradient(180deg, #eef6ff 0%, #ffffff 100%);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.grafico-admin:hover {
+  border-color: #b7d4f0;
+  box-shadow: 0 16px 32px rgba(23, 32, 51, 0.12);
+}
+
+.grafico-admin__chart {
+  height: 280px;
+}
+
+@media (max-width: 620px) {
+  .grafico-admin__chart {
+    height: 240px;
+  }
+}

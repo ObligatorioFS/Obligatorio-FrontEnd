@@ -32,6 +32,15 @@
   color: var(--muted);
 }
 
+.topbar .primary-btn {
+  transition: background 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.topbar .primary-btn:hover {
+  background: #1f3f63;
+  box-shadow: 0 12px 24px rgba(38, 75, 115, 0.18);
+}
+
 @media (max-width: 960px) {
   .topbar {
     align-items: stretch;

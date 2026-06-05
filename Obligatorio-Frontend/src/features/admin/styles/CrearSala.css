@@ -2,3 +2,42 @@
   display: grid;
   gap: 14px;
 }
+
+.crear-sala {
+  border-top: 4px solid #b45309;
+  background: linear-gradient(180deg, #fff5e6 0%, #ffffff 100%);
+  transition: box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.crear-sala:hover {
+  border-color: #f2c98d;
+  box-shadow: 0 16px 32px rgba(23, 32, 51, 0.12);
+}
+
+.crear-sala input {
+  border-color: #edcea4;
+  background: rgba(255, 255, 255, 0.94);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.crear-sala input:hover {
+  border-color: #dfa85e;
+}
+
+.crear-sala input:focus {
+  border-color: #b45309;
+  box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.14);
+}
+
+.crear-sala .secondary-btn {
+  color: #7c3a03;
+  border-color: #f2c98d;
+  background: #fff0dc;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.crear-sala .secondary-btn:hover {
+  background: #ffe3bd;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(180, 83, 9, 0.16);
+}

@@ -1,39 +1,120 @@
 .filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+}
+
+.filters select {
+  width: auto;
+}
+
+.filters select:first-child {
+  min-width: 170px;
+}
+
+.filters select:nth-child(2) {
+  min-width: 220px;
+}
+
+.filters .ghost-btn {
+  min-width: 96px;
+  border-color: #c8d9ee;
+  color: #1e3a5f;
+  background: #ffffff;
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, background 150ms ease, color 150ms ease;
+}
+
+.filters .ghost-btn:hover {
+  border-color: #2563eb;
+  color: #1d4ed8;
+  background: #eef6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12);
+}
+
+.filters .ghost-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.10);
 }
 
 .table-wrap {
   width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 table {
   width: 100%;
-  min-width: 720px;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 th,
 td {
-  padding: 14px 12px;
+  padding: 15px 12px;
   border-bottom: 1px solid var(--line);
   text-align: left;
-  white-space: nowrap;
+  color: #22314a;
+  font-size: 14px;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 th {
-  color: var(--muted);
+  color: #334155;
   font-size: 13px;
+  font-weight: 800;
+}
+
+.table-wrap tbody tr {
+  transition: background 150ms ease, box-shadow 150ms ease;
+}
+
+.table-wrap tbody tr:hover {
+  position: relative;
+  background: #f4f9ff;
+  box-shadow: inset 4px 0 0 #2563eb;
+}
+
+.table-wrap tbody td:first-child {
+  color: #0f1d35;
+  font-weight: 700;
+}
+
+.table-wrap tbody td:nth-child(3),
+.table-wrap tbody td:nth-child(5) {
+  color: #334155;
+  font-weight: 700;
 }
 
 .table-wrap .table-btn {
   min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-color: #c8d9ee;
+  color: #1e3a5f;
+  background: #ffffff;
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.table-wrap .table-btn:hover {
+  border-color: #2563eb;
+  color: #1d4ed8;
+  background: #eef6ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12);
 }
 
 @media (max-width: 620px) {
   .filters {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  th,
+  td {
+    padding: 12px 8px;
+    font-size: 13px;
   }
 }

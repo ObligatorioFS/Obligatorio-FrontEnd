@@ -83,7 +83,7 @@ const CrearClase = () => {
       <div className="panel-header">
         <div>
           <h2>Crear clase</h2>
-          <p>Formulario alineado con POST /v1/clases.</p>
+          <p>Crea clases para el club</p>
         </div>
       </div>
 
@@ -102,8 +102,8 @@ const CrearClase = () => {
                 message: "La descripcion debe tener al menos 2 caracteres",
               },
               maxLength: {
-                value: 200,
-                message: "La descripcion debe tener como máximo 200 caracteres",
+                value: 100,
+                message: "La descripcion debe tener como máximo 100 caracteres",
               },
             })}
             name="descripcion"
@@ -180,6 +180,7 @@ const CrearClase = () => {
           {cargando ? "Creando..." : "Guardar clase"}
         </button>
       </form>
+      <br/>
       <MensajeAlerta mensaje={mensaje} tipo="exito" flotante />
       {(error || (isSubmitted && !isValid)) && (
         <div className="form-error">

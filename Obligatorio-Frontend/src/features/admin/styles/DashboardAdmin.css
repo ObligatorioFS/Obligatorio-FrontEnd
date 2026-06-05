@@ -29,6 +29,10 @@ body {
   background: var(--page);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 button,
 input,
 select,
@@ -145,6 +149,14 @@ textarea {
   color: var(--text);
   background: #fff;
   outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--theme-main);
+  background: #fbfdff;
 }
 
 textarea {
@@ -158,6 +170,20 @@ select:focus,
 textarea:focus {
   border-color: var(--theme-main);
   box-shadow: 0 0 0 4px rgba(158, 194, 230, 0.25);
+}
+
+select option {
+  color: var(--text);
+  background: #ffffff;
+  font-weight: 700;
+  min-height: 36px;
+  padding: 10px 12px;
+  line-height: 1.8;
+}
+
+select option:checked {
+  color: #ffffff;
+  background: var(--theme-dark);
 }
 
 /* =========================
@@ -195,6 +221,9 @@ textarea:focus {
 .compact {
   min-height: 38px;
   width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .table-btn.danger {

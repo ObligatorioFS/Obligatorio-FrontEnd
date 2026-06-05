@@ -2,3 +2,45 @@
   display: grid;
   gap: 14px;
 }
+
+.crear-actividad {
+  border-top: 4px solid #16803c;
+  background: linear-gradient(180deg, #effaf1 0%, #ffffff 100%);
+  transition: box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.crear-actividad:hover {
+  border-color: #b8e3c2;
+  box-shadow: 0 16px 32px rgba(23, 32, 51, 0.12);
+}
+
+.crear-actividad input,
+.crear-actividad textarea {
+  border-color: #bddfc6;
+  background: rgba(255, 255, 255, 0.94);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.crear-actividad input:hover,
+.crear-actividad textarea:hover {
+  border-color: #7bc190;
+}
+
+.crear-actividad input:focus,
+.crear-actividad textarea:focus {
+  border-color: #16803c;
+  box-shadow: 0 0 0 4px rgba(22, 128, 60, 0.14);
+}
+
+.crear-actividad .secondary-btn {
+  color: #14532d;
+  border-color: #b8e3c2;
+  background: #e8f7ec;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.crear-actividad .secondary-btn:hover {
+  background: #d8f0de;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(22, 128, 60, 0.16);
+}

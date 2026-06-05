@@ -1,7 +1,37 @@
+import { useEffect } from "react"
+import { useDispatch  } from "react-redux"
+import { useNavigate } from "react-router"
+import { setRutinas } from "../../rutinasSlice"
 
 const RutinasPendientes = () => {
-  
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    fetch('https://obligatorio-full-stack-ecru.vercel.app/v1/rutinas',
+        {
+          method: 'GET',
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          }
+        }
+    )
+    .then(res =>{
+        if(res.ok){
+            return res.json()
+        }else{
+            if(res.status === 401){
+                localStorage.removeItem('token')
+                navigate("/login")
+                return
+            }
+        }
+    })
+    .then(data => dispatch(setRutinas(data)))
+    .catch()
+    .finally()
+   }, [])
 
   return (
 

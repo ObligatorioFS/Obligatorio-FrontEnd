@@ -6,6 +6,7 @@ import EstadisticasAdmin from '../components/EstadisticasAdmin'
 import FormularioGestion from '../components/FormularioGestion'
 import ClasesRegistradas from '../components/ClasesRegistradas'
 import AdministracionRapida from '../components/AdministracionRapida'
+import GraficoAdmin from '../components/GraficoAdmin'
 
 
 const DashboardAdmin = () => {
@@ -27,6 +28,7 @@ const DashboardAdmin = () => {
     <main className="main-content">
       <Banner />
       <EstadisticasAdmin />
+      <GraficoAdmin />
       <FormularioGestion />
       <ClasesRegistradas  />
       <AdministracionRapida />

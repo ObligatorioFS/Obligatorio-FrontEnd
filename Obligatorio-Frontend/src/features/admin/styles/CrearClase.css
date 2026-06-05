@@ -1,15 +1,63 @@
 .crear-clase {
   grid-row: span 2;
+  border-top: 4px solid #2563eb;
+  background: linear-gradient(180deg, #eef6ff 0%, #ffffff 100%);
+  transition: box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.crear-clase:hover {
+  border-color: #b7d4f0;
+  box-shadow: 0 16px 32px rgba(23, 32, 51, 0.12);
 }
 
 .crear-clase .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  gap: 16px 18px;
+}
+
+.crear-clase .panel-header {
+  margin-bottom: 14px;
+}
+
+.crear-clase label {
+  color: #203a5f;
+}
+
+.crear-clase input,
+.crear-clase select {
+  border-color: #b7d4f0;
+  background: rgba(255, 255, 255, 0.92);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.crear-clase input:hover,
+.crear-clase select:hover {
+  border-color: #8fb7e3;
+}
+
+.crear-clase input:focus,
+.crear-clase select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
 }
 
 .crear-clase .form-grid .primary-btn {
   grid-column: 1 / -1;
+  min-height: 44px;
+  margin-top: 2px;
+  color: #1d4ed8;
+  border-color: #b7d4f0;
+  background: #eaf4ff;
+  box-shadow: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.crear-clase .form-grid .primary-btn:hover {
+  border-color: #8fb7e3;
+  background: #dceeff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.14);
 }
 
 @media (max-width: 620px) {

@@ -1,33 +1,112 @@
-import { useRef } from "react"
-import "../styles/CrearSala.css"
-import { crearSala } from "../../salasSlice"
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react";
+import "../styles/CrearSala.css";
+import { crearSala } from "../../salasSlice";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import MensajeAlerta from "../../shared/components/MensajeAlerta";
 
 export const CrearSala = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid, isSubmitted },
+  } = useForm({ mode: "onSubmit" });
 
- const dispatch = useDispatch()
- const nombreRef = useRef()
- const capacidadRef = useRef()
+  const dispatch = useDispatch();
+  const [mensaje, setMensaje] = useState("");
+  const [error, setError] = useState("");
+  const [cargando, setCargando] = useState(false);
+  const [mensajeExito, setMensajeExito] = useState("");
+  const navigate = useNavigate();
 
- const handleOnClickCrearSala = () => {
+  useEffect(() => {
+    if (!mensaje && !mensajeExito) return;
+    const timeoutId = setTimeout(() => {
+      setMensaje("");
+      setMensajeExito("");
+    }, 3000);
+    return () => clearTimeout(timeoutId);
+  }, [mensaje, mensajeExito]);
+
+  const handleOnClickCrearSala = (data) => {
+    setError("");
+    setMensaje("");
+
     const nuevaSala = {
-        nombre: nombreRef.current.value,
-        capacidadMax: capacidadRef.current.value
-    }
-    dispatch(crearSala(nuevaSala))
- }
+      ...data,
+    };
+    setCargando(true);
+
+    fetch("https://obligatorio-full-stack-ecru.vercel.app/v1/salas", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      method: "POST",
+      body: JSON.stringify(nuevaSala),
+    })
+      .then(async (res) => {
+        if (res.ok) {
+          return res.json();
+        } else if (res.status == 401) {
+          localStorage.removeItem("token");
+          navigate("/login");
+        } else {
+          const error = await res.json();
+          throw new Error(error.message || "Error al crear la clase");
+        }
+      })
+      .then((salaRes) => {
+        dispatch(crearSala(salaRes));
+        reset();
+        setMensaje("Sala creada correctamente");
+        return;
+      })
+      .catch((e) => {
+        setError(e.message);
+      })
+      .finally(() => setCargando(false));
+  };
 
   return (
-
-      <article className="panel crear-sala">
-        <div className="panel-header">
-          <h2>Nueva sala</h2>
+    <article className="panel crear-sala">
+      <div className="panel-header">
+        <h2>Nueva sala</h2>
+      </div>
+      <form
+        onSubmit={handleSubmit(handleOnClickCrearSala)}
+        className="stack-form"
+        data-api="POST /v1/salas"
+      >
+        <input
+          {...register("nombre", { required: "El nombre es requerido" })}
+          type="text"
+          placeholder="Sala principal"
+        />
+        <input
+          {...register("capacidadMax", {
+            required: "La capacidad máxima es requerida",
+            min: { value: 1, message: "La capacidad máxima debe ser al menos 1" },
+          })}
+          type="number"
+          placeholder="40"
+        />
+        <button className="secondary-btn" type="submit" disabled={cargando}>
+          {cargando ? "Creando..." : "Crear sala"}
+        </button>
+      </form>
+      <br />
+      <MensajeAlerta mensaje={mensaje} tipo="exito" flotante />
+      <MensajeAlerta mensaje={error} flotante />
+      {isSubmitted && !isValid && (
+        <div className="form-error">
+          {error && <p>{error}</p>}
+          {errors.nombre && <p>{errors.nombre.message}</p>}
+          {errors.capacidadMax && <p>{errors.capacidadMax.message}</p>}
         </div>
-        <form className="stack-form" data-api="POST /v1/salas">
-          <input ref={nombreRef} name="nombre" type="text" placeholder="Sala principal" />
-          <input ref={capacidadRef} name="capacidadMax" type="number" placeholder="40" />
-          <button onClick={handleOnClickCrearSala} className="secondary-btn" type="submit">Crear sala</button>
-        </form>
-      </article>
-  )
-}
+      )}
+    </article>
+  );
+};
