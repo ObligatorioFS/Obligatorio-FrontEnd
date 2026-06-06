@@ -3,6 +3,8 @@ import MensajeAlerta from "../../shared/components/MensajeAlerta"
 import { useEffect, useRef, useState } from "react"
 import { actualizarActividad, eliminarActividad } from "../../actividadesSlice"
 import { useNavigate } from "react-router"
+import { BASE_URL } from "../../../config/api"
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils"
 
 const Actividad = ({actividad}) => {
 
@@ -11,6 +13,7 @@ const Actividad = ({actividad}) => {
   const [mensaje, setMensaje] = useState("")
   const [mensajeExito, setMensajeExito] = useState("")
   const [cargando, setCargando] = useState(false)
+  const [eliminando, setEliminando] = useState(false)
   const inputNombreRef = useRef()
   const inputDescripcionRef = useRef()
   const navigate = useNavigate()
@@ -40,7 +43,7 @@ const Actividad = ({actividad}) => {
     }
     setCargando(true)
 
-    fetch(`https://obligatorio-full-stack-ecru.vercel.app/v1/actividades/${actividad._id}`, {
+    fetch(`${BASE_URL}/actividades/${actividad._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -65,6 +68,7 @@ const Actividad = ({actividad}) => {
           id: actividad._id,
           modificado: { nombre, descripcion }
         }))
+        obtenerEstadisticasAdmin(dispatch, navigate);
         setMensaje("")
         setMensajeExito("Actividad modificada correctamente")
         setEditando(false)
@@ -75,7 +79,8 @@ const Actividad = ({actividad}) => {
   }
 
   const handleOnClickEliminar = () => {
-    fetch(`https://obligatorio-full-stack-ecru.vercel.app/v1/actividades/${actividad._id}`, {
+    setEliminando(true)
+    fetch(`${BASE_URL}/actividades/${actividad._id}`, {
       method: "DELETE",
       headers: {
         Authorization: localStorage.getItem('token'),
@@ -84,6 +89,7 @@ const Actividad = ({actividad}) => {
       .then(async res => {
         if (res.ok) {
           dispatch(eliminarActividad(actividad._id))
+          obtenerEstadisticasAdmin(dispatch, navigate);
           setMensaje("")
           setMensajeExito("Actividad borrada correctamente")
           return
@@ -97,7 +103,7 @@ const Actividad = ({actividad}) => {
       })
       .catch(error => {
         setMensaje(error.message)
-      })
+      }).finally(() => setEliminando(false))
   }
 
   if (!editando) {
@@ -110,7 +116,9 @@ const Actividad = ({actividad}) => {
         <button onClick={handleOnClickEditar} className="table-btn icon-btn edit-btn" aria-label="Editar actividad">
           Editar
         </button>
-        <button onClick={handleOnClickEliminar} className="table-btn icon-btn delete-btn" aria-label="Eliminar actividad">Eliminar</button>
+        <button onClick={handleOnClickEliminar} className="table-btn icon-btn delete-btn" aria-label="Eliminar actividad" disabled={eliminando}>
+          {eliminando ? "Eliminando..." : "Eliminar"}
+        </button>
         <MensajeAlerta mensaje={mensaje} flotante />
         <MensajeAlerta mensaje={mensajeExito} tipo="exito" flotante />
       </div>

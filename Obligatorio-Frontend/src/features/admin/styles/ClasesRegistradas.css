@@ -106,6 +106,21 @@ th {
   box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12);
 }
 
+.table-loading {
+  min-height: 140px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  color: #2563eb;
+}
+
+.table-loading p {
+  margin: 0;
+  color: #536179;
+  font-weight: 800;
+}
+
 @media (max-width: 620px) {
   .filters {
     flex-direction: column;

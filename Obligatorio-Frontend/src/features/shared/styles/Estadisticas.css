@@ -31,6 +31,22 @@
   font-size: 30px;
 }
 
+.spinner {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  border: 3px solid rgba(37, 99, 235, 0.22);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .stat-card--default {
   --stat-accent: var(--theme-dark);
   border-color: var(--line);

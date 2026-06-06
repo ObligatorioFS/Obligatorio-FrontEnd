@@ -3,6 +3,7 @@ import MensajeAlerta from "../../shared/components/MensajeAlerta"
 import { useEffect, useRef, useState } from "react"
 import { actualizarActividad, eliminarActividad } from "../../actividadesSlice"
 import { useNavigate } from "react-router"
+import { BASE_URL } from "../../../config/api"
 
 const Rutina = ({ rutina }) => {
 
@@ -40,7 +41,7 @@ const Rutina = ({ rutina }) => {
     }
     setCargando(true)
 
-    fetch(`https://obligatorio-full-stack-ecru.vercel.app/v1/rutinas/${actividad._id}`, {
+    fetch(`${BASE_URL}/rutinas/${actividad._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

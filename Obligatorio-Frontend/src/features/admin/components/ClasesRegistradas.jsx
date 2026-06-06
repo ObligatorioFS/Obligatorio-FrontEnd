@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { setClases } from "../../clasesSlice";
 import FilaClase from "./FilaClase";
+import Paginate from "./Paginate";
+import { obtenerClases } from "../../../config/utils/clasesUtils";
 import "../styles/ClasesRegistradas.css";
 
 const ClasesRegistradas = () => {
@@ -13,54 +14,27 @@ const ClasesRegistradas = () => {
   const [actividadFiltro, setActividadFiltro] = useState("");
   const dias = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado"];
 
-  const obtenerClases = () => {
-    const params = new URLSearchParams({
-      page: "1",
-      limit: "10",
+  const clases = useSelector((state) => state.clases.clases);
+  const actividades = useSelector((state) => state.actividades.actividades);
+  const cargando = useSelector(state => state.clases.cargando)
+
+  const fetchClases = (page = 1) => {
+    obtenerClases({
+      dispatch,
+      navigate,
+      page,
+      dia: diaFiltro,
+      idActividad: actividadFiltro,
     });
-
-    if (diaFiltro) {
-      params.append("dia", diaFiltro);
-    }
-
-    if (actividadFiltro) {
-      params.append("idActividad", actividadFiltro);
-    }
-
-    fetch(
-      `https://obligatorio-full-stack-ecru.vercel.app/v1/clases?${params.toString()}`,
-      {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      },
-    )
-      .then(async (res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        if (res.status === 401) {
-          localStorage.removeItem("token");
-          navigate("/login");
-          return;
-        }
-        const error = await res.json();
-        throw new Error(error.message || "Error al obtener las clases");
-      })
-      .then((data) => dispatch(setClases(data.clases)))
-      .catch((error) => console.error(error.message));
   };
 
-    useEffect(() => {
-    obtenerClases();
+  useEffect(() => {
+    fetchClases();
   }, []);
 
   const handleOnClickFiltrar = () => {
-    obtenerClases();
+    fetchClases(1);
   };
-
-  const clases = useSelector((state) => state.clases.clases);
-  const actividades = useSelector((state) => state.actividades.actividades);
 
   return (
     <section id="clases-registradas" className="panel">
@@ -81,7 +55,6 @@ const ClasesRegistradas = () => {
               </option>
             ))}
           </select>
-
           <select
             value={actividadFiltro}
             onChange={(e) => setActividadFiltro(e.target.value)}
@@ -102,10 +75,6 @@ const ClasesRegistradas = () => {
           </button>
         </div>
       </div>
-
-      {/* =========================
-        TABLA DE CLASES
-      ========================== */}
       <div className="table-wrap">
         <table>
           <thead>
@@ -118,9 +87,17 @@ const ClasesRegistradas = () => {
               <th>Acciones</th>
             </tr>
           </thead>
-
           <tbody>
-            {clases.length > 0 ? (
+            {cargando ? (
+              <tr>
+                <td colSpan="6">
+                  <div className="table-loading">
+                    <span className="spinner" />
+                    <p>Cargando clases...</p>
+                  </div>
+                </td>
+              </tr>
+            ) : clases.length > 0 ? (
               clases.map((clase) => (
                 <FilaClase
                   key={clase._id}
@@ -141,6 +118,7 @@ const ClasesRegistradas = () => {
           </tbody>
         </table>
       </div>
+      <Paginate fnFetchClases={fetchClases} />
     </section>
   );
 };

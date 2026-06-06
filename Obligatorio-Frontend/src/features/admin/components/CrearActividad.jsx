@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { crearActividad } from "../../actividadesSlice";
 import { useEffect } from "react";
+import { BASE_URL } from "../../../config/api";
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils"
 
 const CrearActividad = () => {
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const CrearActividad = () => {
   };
   setCargando(true);
 
-    fetch("https://obligatorio-full-stack-ecru.vercel.app/v1/actividades", {
+    fetch(`${BASE_URL}/actividades`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -61,6 +63,7 @@ const CrearActividad = () => {
       })
       .then((actividadRes) => {
         dispatch(crearActividad(actividadRes));
+        obtenerEstadisticasAdmin(dispatch, navigate);
         reset();
         setMensaje("Actividad  creada correctamente");
         return;

@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import MensajeAlerta from "../../shared/components/MensajeAlerta";
+import { BASE_URL } from "../../../config/api";
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils"
 
 export const CrearSala = () => {
   const {
@@ -39,7 +41,7 @@ export const CrearSala = () => {
     };
     setCargando(true);
 
-    fetch("https://obligatorio-full-stack-ecru.vercel.app/v1/salas", {
+    fetch(`${BASE_URL}/salas`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -55,11 +57,12 @@ export const CrearSala = () => {
           navigate("/login");
         } else {
           const error = await res.json();
-          throw new Error(error.message || "Error al crear la clase");
+          throw new Error(error.message || "Error al crear la sala");
         }
       })
       .then((salaRes) => {
         dispatch(crearSala(salaRes));
+        obtenerEstadisticasAdmin(dispatch, navigate);
         reset();
         setMensaje("Sala creada correctamente");
         return;

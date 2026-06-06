@@ -1,59 +1,48 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import TarjetaEstadistica from "../../shared/components/TarjetaEstadistica";
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils";
 
 const EstadisticasAdmin = () => {
-  const clases = useSelector((state) => state.clases.clases);
-  const salas = useSelector((state) => state.salas.salas);
-  const actividades = useSelector((state) => state.actividades.actividades);
-  const rutinas = useSelector((state) => state.rutinas.rutinas);
- 
-  //Hay que hacer un endopint para estadisticas, sino muestra solo lo que tenemos en react
-  //Y no lo que esta en la base de datos, que es lo que realmente queremos mostrar
-  const cuposOcupados = clases.reduce((total, clase) => {
-    return total + (clase.inscriptos?.length || 0);
-  }, 0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const estadisticas = useSelector((state) => state.estadisticas.estadisticas);
+  const cargando = useSelector(state => state.estadisticas.cargando)
 
-  const cuposDisponibles = clases.reduce((total, clase) => {
-    return total + (clase.capacidadMax - (clase.inscriptos?.length || 0));
-  }, 0);
+  useEffect(() => {
+    obtenerEstadisticasAdmin(dispatch, navigate);
+  }, []);
 
-  const rutinasPendientes = rutinas.filter(rutina => {
-  return rutina.ejercicios.length === 0
-}).length
-
-  const actividadesConClases = actividades.filter(actividad => {
-  return clases.some(clase => {
-    return clase.actividad?._id === actividad._id ||
-           clase.actividad?.nombre === actividad.nombre ||
-           clase.actividad === actividad.nombre
-  })
-  }).length
+  const actividadMasPopular = estadisticas.actividadMasPopular?.nombre || "Sin datos";
+  const ocupacionPromedio = estadisticas.ocupacionPromedio ?? 0;
+  const spinner = <span className="spinner" aria-label="Cargando estadisticas" />;
 
   return (
     <section className="stats-grid">
       <TarjetaEstadistica tituloTarjeta="Clases activas"
-        valorTarjeta={clases.length}
-        detalleTarjeta={`${cuposOcupados} cupos ocupados`}
+        valorTarjeta={cargando ? spinner : estadisticas.clasesActivas ?? 0}
+        detalleTarjeta={cargando ? "Cargando..." : `${estadisticas.cuposOcupados ?? 0} cupos ocupados`}
         color="stat-card--clases"
       />
       <TarjetaEstadistica
         tituloTarjeta="Actividades disponibles"
-        valorTarjeta={actividades.length}
-        detalleTarjeta= {`${actividadesConClases} con clases activas`}
+        valorTarjeta={cargando ? spinner : estadisticas.actividadesDisponibles ?? 0}
+        detalleTarjeta={cargando ? "Cargando..." : `Mas popular: ${actividadMasPopular}`}
         color="stat-card--actividades"
       />
 
       <TarjetaEstadistica
         tituloTarjeta="Salas disponibles"
-        valorTarjeta={salas.length}
-        detalleTarjeta= {`${cuposDisponibles} cupos disponibles`}
+        valorTarjeta={cargando ? spinner : estadisticas.salasDisponibles ?? 0}
+        detalleTarjeta={cargando ? "Cargando..." : `Ocupacion promedio: ${ocupacionPromedio}%`}
         color="stat-card--salas"
       />
 
       <TarjetaEstadistica
         tituloTarjeta="Rutinas pendientes"
-        valorTarjeta={rutinasPendientes}
-        detalleTarjeta="Sin ejercicios asignados"
+        valorTarjeta={cargando ? spinner : estadisticas.rutinasPendientes ?? 0}
+        detalleTarjeta={cargando ? "Cargando..." : "Sin ejercicios asignados"}
         color="stat-card--rutinas"
       />
     </section>

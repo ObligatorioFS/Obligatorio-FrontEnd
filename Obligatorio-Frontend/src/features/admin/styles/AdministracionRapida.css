@@ -127,6 +127,29 @@
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M3 6h18'/%3E%3Cpath d='M8 6V4h8v2'/%3E%3Cpath d='M6 6l1 18h10l1-18'/%3E%3Cpath d='M10 11v6'/%3E%3Cpath d='M14 11v6'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
+.quick-panel .delete-btn:disabled {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+.quick-panel .delete-btn:disabled::before {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(180, 35, 24, 0.24);
+  border-top-color: #b42318;
+  border-radius: 50%;
+  background: transparent;
+  -webkit-mask: none;
+  mask: none;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 #clases-registradas {
   scroll-margin-top: 24px;
 }

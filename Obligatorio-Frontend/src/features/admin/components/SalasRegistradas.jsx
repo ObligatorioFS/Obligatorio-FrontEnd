@@ -3,15 +3,14 @@ import Sala from "./Sala"
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { setSalas } from "../../salasSlice";
+import { BASE_URL } from "../../../config/api";
 
 const SalasRegistradas = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   
-
-  
   useEffect(() => {
-      fetch('https://obligatorio-full-stack-ecru.vercel.app/v1/salas',
+      fetch(`${BASE_URL}/salas`,
           {
               headers: {
                   Authorization: localStorage.getItem('token'),
@@ -38,7 +37,6 @@ const SalasRegistradas = () => {
   const salas = useSelector(state => state.salas.salas);
 
   return (
-    
       <article className="panel quick-panel salas-registradas">
          <div className="panel-header">
           <div>

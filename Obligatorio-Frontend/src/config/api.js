@@ -1,0 +1,1 @@
+export const BASE_URL = "https://obligatorio-full-stack-ecru.vercel.app/v1"

@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch  } from "react-redux"
 import { useNavigate } from "react-router"
 import { setRutinas } from "../../rutinasSlice"
+import { BASE_URL } from "../../../config/api"
 
 const RutinasPendientes = () => {
 
@@ -9,7 +10,7 @@ const RutinasPendientes = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('https://obligatorio-full-stack-ecru.vercel.app/v1/rutinas',
+    fetch(`${BASE_URL}/rutinas`,
         {
           method: 'GET',
           headers: {

@@ -19,31 +19,39 @@ ChartJS.register(
 )
 
 const GraficoAdmin = () => {
-  const clases = useSelector(state => state.clases.clases)
+  const ocupacionPorDia = useSelector(
+    state => state.estadisticas.estadisticas.ocupacionPorDia
+  ) || []
+  const cargando = useSelector(state => state.estadisticas.cargando)
 
-  //Hay que hacer un endopint para estadisticas, sino muestra solo lo que tenemos en react
-  //Y no lo que esta en la base de datos, que es lo que realmente queremos mostrar
-  const dias = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado"]
-  const etiquetas = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
-
-  const clasesPorDia = dias.map(dia => {
-    return clases.filter(clase => clase.dia === dia).length
-  })
+  const capitalizar = texto => {
+    if (!texto) return "Sin dia"
+    return texto.charAt(0).toUpperCase() + texto.slice(1)
+  }
 
   const data = {
-    labels: etiquetas,
+    labels: ocupacionPorDia.map(item => capitalizar(item.dia)),
     datasets: [
       {
-        label: "Clases",
-        data: clasesPorDia,
-        backgroundColor: "#2563eb",
-        borderRadius: 7,
-        barThickness: 34,
+        label: "Ocupacion diaria",
+        data: ocupacionPorDia.map(item => item.ocupacion),
+        backgroundColor: [
+          "#2563eb",
+          "#16803c",
+          "#b45309",
+          "#7c3aed",
+          "#0891b2",
+          "#be123c",
+        ],
+        borderSkipped: false,
+        borderRadius: 8,
+        barThickness: 26,
       },
     ],
   }
 
   const options = {
+    indexAxis: "y",
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -51,21 +59,50 @@ const GraficoAdmin = () => {
         display: false,
       },
       tooltip: {
+        backgroundColor: "#172033",
+        padding: 12,
+        titleFont: {
+          weight: "800",
+        },
+        bodyFont: {
+          weight: "700",
+        },
         callbacks: {
-          label: context => `${context.raw} clases`,
+          label: context => {
+            const item = ocupacionPorDia[context.dataIndex]
+            const detalleCupos = item?.capacidad
+              ? ` (${item.ocupados || 0}/${item.capacidad} cupos)`
+              : ""
+
+            return `${context.raw}% de ocupacion${detalleCupos}`
+          },
         },
       },
     },
     scales: {
       x: {
+        beginAtZero: true,
+        max: 100,
         grid: {
-          display: false,
+          color: "rgba(83, 97, 121, 0.14)",
+        },
+        ticks: {
+          callback: value => `${value}%`,
+          color: "#536179",
+          font: {
+            weight: "700",
+          },
         },
       },
       y: {
-        beginAtZero: true,
+        grid: {
+          display: false,
+        },
         ticks: {
-          precision: 0,
+          color: "#172033",
+          font: {
+            weight: "800",
+          },
         },
       },
     },
@@ -75,13 +112,20 @@ const GraficoAdmin = () => {
     <section className="panel grafico-admin">
       <div className="panel-header">
         <div>
-          <h2>Clases por dia</h2>
-          <p>Distribucion semanal de clases registradas.</p>
+          <h2>Ocupacion por dia</h2>
+          <p>Porcentaje de cupos ocupados segun la capacidad de cada dia.</p>
         </div>
       </div>
 
       <div className="grafico-admin__chart">
-        <Bar data={data} options={options} />
+        {cargando ? (
+          <div className="grafico-admin__loading">
+            <span className="spinner" />
+            <p>Cargando estadisticas...</p>
+          </div>
+        ) : (
+          <Bar data={data} options={options} />
+        )}
       </div>
     </section>
   )

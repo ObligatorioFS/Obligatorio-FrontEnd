@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setActividades } from "../../actividadesSlice";
 import Actividad from "./Actividad";
+import { BASE_URL } from "../../../config/api";
 
 
 const ActividadesRegistradas = () => {
@@ -11,7 +12,7 @@ const ActividadesRegistradas = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-      fetch('https://obligatorio-full-stack-ecru.vercel.app/v1/actividades',
+      fetch(`${BASE_URL}/actividades`,
           {
               headers: {
                   Authorization: localStorage.getItem('token'),

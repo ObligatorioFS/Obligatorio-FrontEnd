@@ -10,11 +10,30 @@
 }
 
 .grafico-admin__chart {
-  height: 280px;
+  height: 340px;
+  padding: 8px 4px 2px;
+  border: 1px solid #d9e7f8;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.grafico-admin__loading {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  color: #2563eb;
+}
+
+.grafico-admin__loading p {
+  margin: 0;
+  color: #536179;
+  font-weight: 800;
 }
 
 @media (max-width: 620px) {
   .grafico-admin__chart {
-    height: 240px;
+    height: 300px;
   }
 }

@@ -1,0 +1,34 @@
+.pagination {
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.pagination li a {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--text);
+  background: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pagination li a:hover {
+  border-color: #2563eb;
+  color: #1d4ed8;
+  background: #eef6ff;
+}
+
+.pagination .active a {
+  border-color: #2563eb;
+  color: #fff;
+  background: #2563eb;
+}

@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux"
 import MensajeAlerta from "../../shared/components/MensajeAlerta"
 import { useEffect, useRef, useState } from "react"
 import { actualizarSala } from "../../salasSlice"
+import { BASE_URL } from "../../../config/api"
 
 
 const Sala = ({ sala }) => {
@@ -37,7 +38,7 @@ const Sala = ({ sala }) => {
   }
   setCargando(true)
 
-  fetch(`https://obligatorio-full-stack-ecru.vercel.app/v1/salas/${sala._id}`, {
+  fetch(`${BASE_URL}/salas/${sala._id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

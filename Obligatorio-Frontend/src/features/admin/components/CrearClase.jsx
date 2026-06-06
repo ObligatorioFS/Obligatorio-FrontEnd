@@ -6,6 +6,9 @@ import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { agregarClase } from "../../clasesSlice";
 import { useEffect } from "react";
+import { BASE_URL } from "../../../config/api";
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils";
+import { obtenerClases } from "../../../config/utils/clasesUtils";
 
 const CrearClase = () => {
   const dispatch = useDispatch();
@@ -44,7 +47,7 @@ const CrearClase = () => {
       sala: data.sala,
     };
 
-    fetch("https://obligatorio-full-stack-ecru.vercel.app/v1/clases", {
+    fetch(`${BASE_URL}/clases`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -65,6 +68,13 @@ const CrearClase = () => {
       })
       .then((claseRes) => {
         dispatch(agregarClase(claseRes));
+        obtenerClases({
+          dispatch,
+          navigate,
+          page: 1,
+          limit: 5,
+        });
+        obtenerEstadisticasAdmin(dispatch, navigate);
         reset();
         setMensaje("Clase creada correctamente");
         return;
@@ -86,7 +96,6 @@ const CrearClase = () => {
           <p>Crea clases para el club</p>
         </div>
       </div>
-
       <form
         onSubmit={handleSubmit(handleOnClickCrearClase)}
         className="form-grid"
@@ -180,7 +189,7 @@ const CrearClase = () => {
           {cargando ? "Creando..." : "Guardar clase"}
         </button>
       </form>
-      <br/>
+      <br />
       <MensajeAlerta mensaje={mensaje} tipo="exito" flotante />
       {(error || (isSubmitted && !isValid)) && (
         <div className="form-error">
