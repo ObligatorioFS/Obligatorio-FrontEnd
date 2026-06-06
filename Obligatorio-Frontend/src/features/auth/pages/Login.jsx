@@ -4,6 +4,7 @@ import {  useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import MensajeError from "../components/MensajeError";
 import { jwtDecode } from 'jwt-decode'
+import { BASE_URL } from "../../../config/api";
 
 const Login = () => {
 
@@ -36,7 +37,7 @@ const Login = () => {
     const handleOnClickLogin = data => {
       setCargando(true)
     
-      fetch('https://obligatorio-full-stack-ecru.vercel.app/v1/login', {
+      fetch(`https://obligatorio-full-stack-ecru.vercel.app/v1/login`, {
        headers: {
          'Content-Type': 'application/json'
        },

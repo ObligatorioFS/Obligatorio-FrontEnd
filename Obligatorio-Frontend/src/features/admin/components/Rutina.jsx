@@ -33,21 +33,21 @@ const Rutina = ({ rutina }) => {
   }
 
   const handleOnClickAgregarEjercicio = () => {
-    const ejercicio = inputEjercicioRef.current.value
+    const ejercicios = inputEjercicioRef.current.value
 
-    if (!ejercicio) {
+    if (!ejercicios) {
       setMensaje("El campo ejercicio es obligatorio")
       return
     }
     setCargando(true)
 
-    fetch(`${BASE_URL}/rutinas/${actividad._id}`, {
+    fetch(`${BASE_URL}/rutinas/${rutina._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token")
       },
-      body: JSON.stringify({ nombre, descripcion })
+      body: JSON.stringify({ ejercicios })
     })
       .then(async res => {
         if (res.ok) {
@@ -62,12 +62,12 @@ const Rutina = ({ rutina }) => {
         throw new Error(error.message || 'No se pudo modificar la sala')
       })
       .then(() => {
-        dispatch(actualizarActividad({
-          id: actividad._id,
-          modificado: { nombre, descripcion }
+        dispatch(actualizarRutina({
+          id: rutina._id,
+          modificado: { ejercicios }
         }))
         setMensaje("")
-        setMensajeExito("Actividad modificada correctamente")
+        setMensajeExito("Rutina modificada correctamente")
         setEditando(false)
       })
       .catch(error => {

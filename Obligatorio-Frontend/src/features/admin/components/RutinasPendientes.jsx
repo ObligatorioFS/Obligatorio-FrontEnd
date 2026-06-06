@@ -34,6 +34,8 @@ const RutinasPendientes = () => {
     .finally()
    }, [])
 
+   const rutinas = useSelector(state => state.rutinas.rutinas);
+
   return (
 
       <article className="panel quick-panel rutinas-pendientes">
@@ -45,20 +47,11 @@ const RutinasPendientes = () => {
         </div>
 
         <div className="quick-list">
-          <div className="quick-item">
-            <div>
-              <strong>Fuerza general</strong>
-              <span>Jugador: Ana Perez</span>
-            </div>
-            <button className="secondary-btn compact" type="button">Agregar ejercicios</button>
-          </div>
-          <div className="quick-item">
-            <div>
-              <strong>Resistencia</strong>
-              <span>Jugador: Juan Gomez</span>
-            </div>
-            <button className="secondary-btn compact" type="button">Agregar ejercicios</button>
-          </div>
+          {rutinas.length> 0 ?
+                    (rutinas.map(rutina => <Rutina key={rutina._id} rutina={rutina} />))
+                    :
+                    (<p>No hay rutinas pendientes</p>)
+                }
         </div>
       </article>
   )

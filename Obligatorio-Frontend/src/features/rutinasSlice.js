@@ -11,8 +11,14 @@ export const rutinasSlice = createSlice({
     setRutinas: (state, action) => {
       state.rutinas = action.payload
     },
-    
-   
+    actualizarRutina: (state, action) => {
+        state.rutinas = state.rutinas.map(rutina => {
+            if (rutina._id == action.payload.id) {
+                rutina = { ...rutina, ...action.payload.modificado }
+            }
+            return rutina
+        })
+      },
   }
 })
 
