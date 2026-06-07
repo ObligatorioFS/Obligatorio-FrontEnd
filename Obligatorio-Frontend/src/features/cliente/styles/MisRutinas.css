@@ -1,0 +1,33 @@
+/* =========================
+   MIS RUTINAS
+========================= */
+.routine-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.routine-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.routine-card span {
+  display: block;
+  margin: 6px 0 12px;
+  color: var(--muted);
+}
+
+.routine-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #344054;
+}
+
+@media (max-width: 960px) {
+  .routine-grid {
+    grid-template-columns: 1fr;
+  }
+}

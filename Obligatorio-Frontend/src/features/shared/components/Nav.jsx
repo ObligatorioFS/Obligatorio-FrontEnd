@@ -5,7 +5,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const rol = localStorage.getItem("rolUsu");
   const esAdmin = rol === "admin";
-  const nombre = localStorage.getItem('nombreUsu') || 'Jugador'
+  const nombre = localStorage.getItem('nombreUsu') || 'Usuario'
   const handleOnClickCerrarSesion = () => {
     localStorage.clear();
     navigate("/login");

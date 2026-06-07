@@ -8,6 +8,7 @@ import Registro from './features/auth/pages/Registro'
 import Layout from './features/shared/components/Layout'
 import RutaNoEncontrada from './features/shared/components/RutaNoEncontrada'
 import DetalleClase from './features/admin/pages/DetalleClase'
+import DetalleClaseCliente from './features/cliente/pages/DetalleClaseCliente'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
            <Route path='/dashboardAdmin' element={<DashboardAdmin />} />
            <Route path='/dashboardCliente' element={<DashboardCliente />} />
            <Route path='/dashboardAdmin/clases/:id' element={<DetalleClase />} />
+           <Route path='/dashboardCliente/clases/:id' element={<DetalleClaseCliente />} />
            
           </Route>
 

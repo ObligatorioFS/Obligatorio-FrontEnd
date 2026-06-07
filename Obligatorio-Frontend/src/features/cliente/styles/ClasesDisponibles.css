@@ -1,0 +1,91 @@
+/* =========================
+   CLASES DISPONIBLES
+========================= */
+.clases-disponibles {
+  display: grid;
+  gap: 18px;
+}
+
+.clases-disponibles .panel-header {
+  margin-bottom: 0;
+}
+
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 6px;
+}
+
+.day-tab {
+  min-height: 38px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(242, 179, 109, 0.42);
+  border-radius: 999px;
+  padding: 0 14px;
+  background: #ffffff;
+  color: #704419;
+  font-weight: 800;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.day-tab:hover,
+.day-tab.active {
+  border-color: #c97b2f;
+  background: #fff3e5;
+  color: #704419;
+  transform: translateY(-1px);
+}
+
+.available-classes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.client-classes-loading,
+.client-classes-empty {
+  min-height: 160px;
+  grid-column: 1 / -1;
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(242, 179, 109, 0.52);
+  border-radius: var(--radius);
+  background: #fffaf4;
+  color: #704419;
+  font-weight: 800;
+}
+
+.client-classes-loading {
+  align-content: center;
+  gap: 8px;
+}
+
+.client-classes-loading p,
+.client-classes-empty {
+  margin: 0;
+}
+
+.clases-disponibles .pagination li a:hover {
+  border-color: #c97b2f;
+  background: #fff3e5;
+  color: #704419;
+}
+
+.clases-disponibles .pagination .active a {
+  border-color: #704419;
+  background: #704419;
+  color: #ffffff;
+}
+
+@media (max-width: 960px) {
+  .available-classes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .available-classes-grid {
+    grid-template-columns: 1fr;
+  }
+}

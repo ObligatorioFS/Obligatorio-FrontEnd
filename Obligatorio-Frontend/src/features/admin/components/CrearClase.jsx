@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { agregarClase } from "../../clasesSlice";
 import { useEffect } from "react";
 import { BASE_URL } from "../../../config/api";
-import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils";
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils";
 import { obtenerClases } from "../../../config/utils/clasesUtils";
 
 const CrearClase = () => {

@@ -92,10 +92,11 @@
 }
 
 .theme-client .topbar .primary-btn:disabled {
-  cursor: wait;
-  opacity: 0.78;
+  cursor: default;
+  opacity: 0.88;
   transform: none;
   filter: none;
+  background: linear-gradient(135deg, #7c4a16, #9a5b1d);
 }
 
 .theme-client .topbar .mensaje-alerta {

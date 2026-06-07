@@ -4,7 +4,7 @@ import MensajeAlerta from "../../shared/components/MensajeAlerta";
 import "../styles/DetalleClase.css";
 import { BASE_URL } from "../../../config/api";
 import { eliminarClase } from "../../clasesSlice";
-import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils";
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils";
 import { obtenerClases } from "../../../config/utils/clasesUtils";
 import { useDispatch } from "react-redux";
 

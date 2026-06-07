@@ -37,7 +37,7 @@ const Login = () => {
     const handleOnClickLogin = data => {
       setCargando(true)
     
-      fetch(`https://obligatorio-full-stack-ecru.vercel.app/v1/login`, {
+      fetch(`${BASE_URL}/login`, {
        headers: {
          'Content-Type': 'application/json'
        },
@@ -47,7 +47,7 @@ const Login = () => {
       if(res.ok){
         return res.json()
       }else if (res.status == 401){
-        throw new Error("Error de usuairo y/o contraseña")
+        throw new Error("Error de usuario y/o contraseña")
       }else{
         throw new Error("Error al iniciar sesion")
       }
@@ -56,7 +56,7 @@ const Login = () => {
       const payload = jwtDecode(data.token)
       localStorage.setItem('rolUsu', payload.rolUsu)
       localStorage.setItem('planUsu', payload.planUsu)
-      localStorage.setItem('nombreUsu', payload.data.usuario.nombre)
+      localStorage.setItem('nombreUsu', data.usuario.nombre)
       if(payload.rolUsu === "admin"){
               navigate('/dashboardAdmin')
             }else{

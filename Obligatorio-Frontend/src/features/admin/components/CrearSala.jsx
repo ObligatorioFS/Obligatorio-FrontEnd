@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import MensajeAlerta from "../../shared/components/MensajeAlerta";
 import { BASE_URL } from "../../../config/api";
-import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils"
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils"
 
 export const CrearSala = () => {
   const {

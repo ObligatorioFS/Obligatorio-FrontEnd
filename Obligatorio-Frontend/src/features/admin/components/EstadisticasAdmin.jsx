@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import TarjetaEstadistica from "../../shared/components/TarjetaEstadistica";
-import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils";
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils";
 
 const EstadisticasAdmin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const estadisticas = useSelector((state) => state.estadisticas.estadisticas);
+  const estadisticas = useSelector(state => state.estadisticas.admin)
   const cargando = useSelector(state => state.estadisticas.cargando)
 
   useEffect(() => {

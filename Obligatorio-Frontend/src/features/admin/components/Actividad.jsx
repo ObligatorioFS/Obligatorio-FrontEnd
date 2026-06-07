@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { actualizarActividad, eliminarActividad } from "../../actividadesSlice"
 import { useNavigate } from "react-router"
 import { BASE_URL } from "../../../config/api"
-import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils"
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils"
 
 const Actividad = ({actividad}) => {
 

@@ -20,7 +20,7 @@ ChartJS.register(
 
 const GraficoAdmin = () => {
   const ocupacionPorDia = useSelector(
-    state => state.estadisticas.estadisticas.ocupacionPorDia
+    state => state.estadisticas.admin.ocupacionPorDia
   ) || []
   const cargando = useSelector(state => state.estadisticas.cargando)
 

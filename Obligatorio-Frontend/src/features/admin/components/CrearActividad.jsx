@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { crearActividad } from "../../actividadesSlice";
 import { useEffect } from "react";
 import { BASE_URL } from "../../../config/api";
-import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasUtils"
+import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils"
 
 const CrearActividad = () => {
   const dispatch = useDispatch();

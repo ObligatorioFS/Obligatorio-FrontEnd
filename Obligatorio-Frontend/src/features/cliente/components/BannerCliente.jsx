@@ -9,13 +9,16 @@ const BannerCliente = () => {
   const [cargando, setCargando] = useState(false)
   const [mensaje, setMensaje] = useState('')
   const [mensajeExito, setMensajeExito] = useState('')
+  const nombre = localStorage.getItem('nombreUsu') || 'Jugador'
+  const [plan, setPlan] = useState(localStorage.getItem('planUsu') || 'plus')
+  const esPremium = plan === 'premium'
 
   const handleOnClickCambiarPlan = () => {
     setCargando(true)
     setMensaje('')
     setMensajeExito('')
 
-    fetch(`${BASE_URL}/v1/usuario`, {
+    fetch(`${BASE_URL}/usuario`, {
       method: 'PUT',
       headers: {
         Authorization: localStorage.getItem('token'),
@@ -23,6 +26,8 @@ const BannerCliente = () => {
     })
       .then(async res => {
         if (res.ok) {
+          localStorage.setItem('planUsu', 'premium')
+          setPlan('premium')
           setMensajeExito('Plan actualizado correctamente')
           return
         }
@@ -45,7 +50,7 @@ const BannerCliente = () => {
   return (
     <header className="topbar">
       <div>
-        <p className="eyebrow">Hola, jugador</p>
+        <p className="eyebrow">Hola, {nombre}</p>
         <h1>Tu actividad en el club</h1>
         <p>Revisa tus clases, solicita rutinas y administra tu plan.</p>
       </div>
@@ -54,11 +59,14 @@ const BannerCliente = () => {
         className="primary-btn compact"
         type="button"
         onClick={handleOnClickCambiarPlan}
-        disabled={cargando}
+        disabled={cargando || esPremium}
       >
-        {cargando ? 'Cambiando plan...' : 'Cambiar a Plan Premium'}
+        {cargando
+          ? 'Cambiando plan...'
+          : esPremium
+            ? 'Ya sos usuario Premium'
+            : 'Cambiar a Plan Premium'}
       </button>
-
       {mensaje && <MensajeAlerta tipo="error" mensaje={mensaje} />}
       {mensajeExito && <MensajeAlerta tipo="exito" mensaje={mensajeExito} />}
     </header>

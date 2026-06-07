@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useDispatch  } from "react-redux"
+import { useDispatch, useSelector  } from "react-redux"
 import { useNavigate } from "react-router"
 import { setRutinas } from "../../rutinasSlice"
 import { BASE_URL } from "../../../config/api"

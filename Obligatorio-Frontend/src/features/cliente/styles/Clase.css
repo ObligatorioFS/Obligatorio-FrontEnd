@@ -1,0 +1,68 @@
+/* =========================
+   CARD DE CLASE CLIENTE
+========================= */
+.available-class-card {
+  min-height: 230px;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 16px;
+  border: 1px solid rgba(242, 179, 109, 0.36);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #fffaf4 0%, #ffffff 100%);
+  box-shadow: 0 12px 24px rgba(112, 68, 25, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.available-class-card:hover {
+  border-color: rgba(201, 123, 47, 0.52);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(112, 68, 25, 0.12);
+}
+
+.available-class-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.available-class-card__top small {
+  color: #704419;
+  font-weight: 900;
+}
+
+.available-class-card h3 {
+  margin: 0;
+  color: #172033;
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.available-class-card p {
+  margin: 6px 0 0;
+  color: #596579;
+  line-height: 1.4;
+}
+
+.available-class-card .primary-btn {
+  width: 100%;
+  margin-top: auto;
+}
+
+.class-time {
+  width: fit-content;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--theme-soft);
+  color: var(--theme-dark);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.class-meta {
+  display: grid;
+  gap: 4px;
+  color: #596579;
+  font-size: 14px;
+}

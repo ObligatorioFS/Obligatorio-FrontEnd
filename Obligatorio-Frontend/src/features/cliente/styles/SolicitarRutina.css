@@ -1,0 +1,15 @@
+/* =========================
+   SOLICITAR RUTINA
+========================= */
+.routine-form {
+  display: grid;
+  grid-template-columns: 0.65fr 1.35fr auto;
+  gap: 14px;
+  align-items: end;
+}
+
+@media (max-width: 960px) {
+  .routine-form {
+    grid-template-columns: 1fr;
+  }
+}

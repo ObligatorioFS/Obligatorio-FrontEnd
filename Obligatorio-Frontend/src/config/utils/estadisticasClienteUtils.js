@@ -1,9 +1,9 @@
 import { BASE_URL } from "../api"
-import { setCargandoEstadisticas, setEstadisticas } from "../../features/estadisticasSlice"
+import { setCargandoEstadisticas, setEstadisticasCliente } from "../../features/estadisticasSlice"
 
-export const obtenerEstadisticasAdmin = (dispatch, navigate) => {
+export const obtenerEstadisticasCliente = (dispatch, navigate) => {
   dispatch(setCargandoEstadisticas(true))
-  fetch(`${BASE_URL}/estadisticas`, {
+  fetch(`${BASE_URL}/estadisticas/cliente`, {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
@@ -22,6 +22,10 @@ export const obtenerEstadisticasAdmin = (dispatch, navigate) => {
       const error = await res.json()
       throw new Error(error.message || "Error al obtener estadisticas")
     })
-    .then((data) => dispatch(setEstadisticas(data)))
+    .then((data) => {
+      if (data) {
+        dispatch(setEstadisticasCliente(data))
+      }
+    })
     .catch((error) => console.error(error.message)).finally(() => dispatch(setCargandoEstadisticas(false)))
 }
