@@ -51,6 +51,7 @@ a {
    LAYOUT AUTH
 ========================= */
 .auth-layout {
+  position: relative;
   min-height: 100vh;
   width: 100%;
   padding: 32px;
@@ -61,7 +62,8 @@ a {
   letter-spacing: 0;
   text-align: left;
   background:
-    linear-gradient(135deg, rgba(158, 194, 230, 0.58), rgba(242, 179, 109, 0.28)),
+    linear-gradient(135deg, rgba(246, 248, 251, 0.88), rgba(255, 247, 237, 0.82)),
+    url("../../../assets/background.png") center / cover no-repeat fixed,
     var(--page);
 }
 
@@ -76,12 +78,15 @@ a {
    TARJETA AUTH
 ========================= */
 .auth-card {
+  position: relative;
+  z-index: 1;
   width: 100%;
   padding: 36px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 24px 70px rgba(23, 32, 51, 0.16);
+  backdrop-filter: blur(10px);
 }
 
 .login-card {
@@ -107,9 +112,13 @@ a {
   width: 46px;
   height: 46px;
   border-radius: var(--radius);
-  background: var(--admin-main);
-  color: #112033;
+  border: 1px solid rgba(38, 75, 115, 0.12);
+  background:
+    #ffffff url("../../../assets/logo360.png") center / 78% no-repeat;
+  color: transparent;
+  font-size: 0;
   font-weight: 800;
+  box-shadow: 0 10px 24px rgba(38, 75, 115, 0.12);
 }
 
 .brand small {
@@ -196,6 +205,8 @@ input:focus {
 ========================= */
 .primary-btn,
 .secondary-btn {
+  position: relative;
+  overflow: hidden;
   display: inline-grid;
   min-height: 46px;
   place-items: center;
@@ -203,6 +214,27 @@ input:focus {
   border-radius: 7px;
   padding: 0 18px;
   font-weight: 800;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.primary-btn::after,
+.secondary-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.42), transparent 80%);
+  transform: translateX(-120%);
+  transition: transform 520ms ease;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-2px);
+}
+
+.primary-btn:hover::after,
+.secondary-btn:hover::after {
+  transform: translateX(120%);
 }
 
 .primary-btn {
@@ -214,6 +246,38 @@ input:focus {
   background: rgba(242, 179, 109, 0.22);
   color: var(--client-dark);
   border-color: rgba(112, 68, 25, 0.12);
+}
+
+.auth-layout .primary-btn {
+  width: 100%;
+  display: inline-grid;
+  place-items: center;
+  background: var(--admin-dark);
+  color: #fff;
+}
+
+.auth-layout .primary-btn:hover {
+  background: #1f3f63;
+  box-shadow: 0 14px 28px rgba(38, 75, 115, 0.22);
+}
+
+.auth-layout .primary-btn:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.auth-layout .secondary-btn {
+  display: inline-grid;
+  place-items: center;
+  background: rgba(242, 179, 109, 0.22);
+  color: var(--client-dark);
+  border-color: rgba(112, 68, 25, 0.12);
+}
+
+.auth-layout .secondary-btn:hover {
+  border-color: rgba(112, 68, 25, 0.26);
+  background: rgba(242, 179, 109, 0.34);
+  box-shadow: 0 12px 24px rgba(112, 68, 25, 0.14);
 }
 
 /* =========================

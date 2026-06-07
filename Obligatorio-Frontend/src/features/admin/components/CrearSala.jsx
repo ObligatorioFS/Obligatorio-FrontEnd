@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/CrearSala.css";
 import { crearSala } from "../../salasSlice";
 import { useDispatch } from "react-redux";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import MensajeAlerta from "../../shared/components/MensajeAlerta";
 import { BASE_URL } from "../../../config/api";
 import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils"
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 
 export const CrearSala = () => {
   const {
@@ -17,24 +18,14 @@ export const CrearSala = () => {
   } = useForm({ mode: "onSubmit" });
 
   const dispatch = useDispatch();
-  const [mensaje, setMensaje] = useState("");
+  const { mensajeExito, setMensajeExito } = useMensajeTemporal();
   const [error, setError] = useState("");
   const [cargando, setCargando] = useState(false);
-  const [mensajeExito, setMensajeExito] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!mensaje && !mensajeExito) return;
-    const timeoutId = setTimeout(() => {
-      setMensaje("");
-      setMensajeExito("");
-    }, 3000);
-    return () => clearTimeout(timeoutId);
-  }, [mensaje, mensajeExito]);
 
   const handleOnClickCrearSala = (data) => {
     setError("");
-    setMensaje("");
+    setMensajeExito("");
 
     const nuevaSala = {
       ...data,
@@ -64,7 +55,7 @@ export const CrearSala = () => {
         dispatch(crearSala(salaRes));
         obtenerEstadisticasAdmin(dispatch, navigate);
         reset();
-        setMensaje("Sala creada correctamente");
+        setMensajeExito("Sala creada correctamente");
         return;
       })
       .catch((e) => {
@@ -101,7 +92,7 @@ export const CrearSala = () => {
         </button>
       </form>
       <br />
-      <MensajeAlerta mensaje={mensaje} tipo="exito" flotante />
+      <MensajeAlerta mensaje={mensajeExito} tipo="exito" flotante />
       <MensajeAlerta mensaje={error} flotante />
       {isSubmitted && !isValid && (
         <div className="form-error">

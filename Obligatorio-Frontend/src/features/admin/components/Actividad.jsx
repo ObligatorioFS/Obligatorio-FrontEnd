@@ -1,32 +1,22 @@
 import { useDispatch } from "react-redux"
 import MensajeAlerta from "../../shared/components/MensajeAlerta"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { actualizarActividad, eliminarActividad } from "../../actividadesSlice"
 import { useNavigate } from "react-router"
 import { BASE_URL } from "../../../config/api"
 import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils"
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal"
 
-const Actividad = ({actividad}) => {
+const Actividad = ({actividad, setMensajeExitoPadre}) => {
 
   const dispatch = useDispatch()
   const [editando, setEditando] = useState(false)
-  const [mensaje, setMensaje] = useState("")
-  const [mensajeExito, setMensajeExito] = useState("")
+  const { mensaje, setMensaje, mensajeExito, setMensajeExito } = useMensajeTemporal() //evitar repetir useEffect para el mensaje
   const [cargando, setCargando] = useState(false)
   const [eliminando, setEliminando] = useState(false)
   const inputNombreRef = useRef()
   const inputDescripcionRef = useRef()
   const navigate = useNavigate()
-
-
-  useEffect(() => {
-  if (!mensaje && !mensajeExito) return
-  const timeoutId = setTimeout(() => {
-    setMensaje("")
-    setMensajeExito("")
-  }, 3000)
-  return () => clearTimeout(timeoutId)
-  }, [mensaje, mensajeExito])
 
   const handleOnClickEditar = () => {
         setMensaje("")
@@ -91,7 +81,7 @@ const Actividad = ({actividad}) => {
           dispatch(eliminarActividad(actividad._id))
           obtenerEstadisticasAdmin(dispatch, navigate);
           setMensaje("")
-          setMensajeExito("Actividad borrada correctamente")
+          setMensajeExitoPadre("Actividad borrada correctamente")
           return
         }
         else if (res.status === 401) {

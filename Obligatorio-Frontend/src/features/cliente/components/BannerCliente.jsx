@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router'
 import { BASE_URL } from '../../../config/api'
 import MensajeAlerta from '../../shared/components/MensajeAlerta'
 import '../styles/BannerCliente.css'
+import useMensajeTemporal from '../../../config/utils/useMensajeTemporal'
+import { obtenerEstadisticasCliente } from "../../../config/utils/estadisticasClienteUtils";
+import { useDispatch } from 'react-redux'
 
 const BannerCliente = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [cargando, setCargando] = useState(false)
-  const [mensaje, setMensaje] = useState('')
-  const [mensajeExito, setMensajeExito] = useState('')
+  const { mensaje, setMensaje, mensajeExito, setMensajeExito } = useMensajeTemporal()
   const nombre = localStorage.getItem('nombreUsu') || 'Jugador'
   const [plan, setPlan] = useState(localStorage.getItem('planUsu') || 'plus')
   const esPremium = plan === 'premium'
@@ -28,6 +31,7 @@ const BannerCliente = () => {
         if (res.ok) {
           localStorage.setItem('planUsu', 'premium')
           setPlan('premium')
+          obtenerEstadisticasCliente(dispatch, navigate);
           setMensajeExito('Plan actualizado correctamente')
           return
         }

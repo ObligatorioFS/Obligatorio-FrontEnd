@@ -76,7 +76,7 @@ const Login = () => {
           <div className="brand login-brand">
             <span>CA</span>
             <div>
-              <strong>Club Activo</strong>
+              <strong>Club360</strong>
               <small>Social y deportivo</small>
             </div>
           </div>

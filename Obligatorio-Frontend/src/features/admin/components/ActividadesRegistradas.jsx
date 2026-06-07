@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setActividades } from "../../actividadesSlice";
 import Actividad from "./Actividad";
 import { BASE_URL } from "../../../config/api";
+import MensajeAlerta from "../../shared/components/MensajeAlerta";
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 
 
 const ActividadesRegistradas = () => {
-
-  const dispatch = useDispatch()
+    const { mensajeExito, setMensajeExito } = useMensajeTemporal()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -49,11 +51,13 @@ const ActividadesRegistradas = () => {
 
         <div className="quick-list">
          {actividades.length> 0 ?
-                    (actividades.map(actividad => <Actividad key={actividad._id} actividad={actividad} />))
+                    (actividades.map(actividad => <Actividad key={actividad._id} actividad={actividad} setMensajeExitoPadre={setMensajeExito} />))
                     :
                     (<p>No hay actividades</p>)
                 }
+                <MensajeAlerta mensaje={mensajeExito} tipo="exito" flotante />
         </div>
+    
       </article>
   )
 }

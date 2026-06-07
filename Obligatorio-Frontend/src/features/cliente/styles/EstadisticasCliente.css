@@ -26,7 +26,7 @@
 
 .cliente-stats .stat-card--cliente strong {
   color: var(--stat-accent);
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.1;
   text-transform: capitalize;
 }

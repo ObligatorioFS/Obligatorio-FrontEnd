@@ -17,7 +17,7 @@ const Nav = () => {
         <span>CA</span>
 
         <div>
-          <strong>Club Activo</strong>
+          <strong>Club360</strong>
           <small>{esAdmin ? "Panel Admin" : `Hola, ${nombre}`}</small>
         </div>
       </div>

@@ -16,8 +16,11 @@ const EstadisticasCliente = () => {
     obtenerEstadisticasCliente(dispatch, navigate);
   }, []);
 
-  const spinner = <span classNames="spinner" aria-label="Cargando"></span>;
+  const spinner = <span className="spinner" aria-label="Cargando"></span>;
   const planActual = estadisticas.plan || "Sin datos";
+  const esPremium = estadisticas.plan === "premium";
+  const clasesInscriptas = estadisticas.clasesInscriptas ?? 0;
+  const limitePlus = 4;
 
   const proximaClase = estadisticas.proximaClase
   ? `${estadisticas.proximaClase.dia} ${estadisticas.proximaClase.hora}`
@@ -31,11 +34,19 @@ const EstadisticasCliente = () => {
     <section className="stats-grid cliente-stats">
       <TarjetaEstadistica
         tituloTarjeta="Cupos disponibles"
-        valorTarjeta={cargando ? spinner : (estadisticas.cuposRestantes ?? 0)}
+        valorTarjeta={
+          cargando
+            ? spinner
+            : esPremium
+              ? "\u221e"
+              : (estadisticas.cuposRestantes ?? 0)
+        }
         detalleTarjeta={
           cargando
             ? "Cargando..."
-            : `${estadisticas.porcentajePlanUsado ?? 0}% del plan usado`
+            : esPremium
+              ? "Cupos ilimitados"
+              : `${estadisticas.porcentajePlanUsado ?? 0}% del plan usado`
         }
         color="stat-card--cliente"
       />
@@ -61,7 +72,9 @@ const EstadisticasCliente = () => {
         detalleTarjeta={
           cargando
             ? "Cargando..."
-            : `${estadisticas.clasesInscriptas ?? 0} clases inscriptas`
+            : esPremium
+              ? `${clasesInscriptas}/\u221e clases inscriptas`
+              : `${clasesInscriptas}/${limitePlus} clases inscriptas`
         }
         color="stat-card--cliente"
       />

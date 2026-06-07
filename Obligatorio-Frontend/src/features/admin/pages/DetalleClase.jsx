@@ -7,13 +7,13 @@ import { eliminarClase } from "../../clasesSlice";
 import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils";
 import { obtenerClases } from "../../../config/utils/clasesUtils";
 import { useDispatch } from "react-redux";
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 
 const DetalleClase = () => {
   const { id } = useParams();
   const [cargando, setCargando] = useState(true);
   const [clase, setClase] = useState(null);
-  const [mensaje, setMensaje] = useState("");
-  const [mensajeExito, setMensajeExito] = useState("");
+  const { mensaje, setMensaje, mensajeExito, setMensajeExito } = useMensajeTemporal();
   const [subiendoImagen, setSubiendoImagen] = useState(false);
   const [inscribiendo, setInscribiendo] = useState(false);
   const [removiendo, setRemoviendo] = useState(false);
@@ -50,14 +50,6 @@ const DetalleClase = () => {
   useEffect(() => {
     obtenerClase();
   }, [id]);
-
-  useEffect(() => {
-    if (!mensaje) return;
-
-    const timeoutId = setTimeout(() => setMensaje(""), 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, [mensaje]);
 
   //ELIMINAR CLASE
   const handleOnClickEliminarClase = () => {

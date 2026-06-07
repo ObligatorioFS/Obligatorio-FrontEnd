@@ -5,9 +5,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { crearActividad } from "../../actividadesSlice";
-import { useEffect } from "react";
 import { BASE_URL } from "../../../config/api";
 import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils"
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 
 const CrearActividad = () => {
   const dispatch = useDispatch();
@@ -19,22 +19,14 @@ const CrearActividad = () => {
     formState: { errors, isValid, isSubmitted },
   } = useForm({ mode: "onSubmit" });
 
-  const [mensaje, setMensaje] = useState("");
+  const { mensajeExito, setMensajeExito } = useMensajeTemporal();
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!mensaje) return;
-
-    const timeoutId = setTimeout(() => setMensaje(""), 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, [mensaje]);
-
   const handleOnClickCrearActividad = (data) => {
     setError("");
-    setMensaje("");
+    setMensajeExito("");
 
 
     const nuevaActividad = {
@@ -65,7 +57,7 @@ const CrearActividad = () => {
         dispatch(crearActividad(actividadRes));
         obtenerEstadisticasAdmin(dispatch, navigate);
         reset();
-        setMensaje("Actividad  creada correctamente");
+        setMensajeExito("Actividad  creada correctamente");
         return;
       })
       .catch((e) => {
@@ -102,7 +94,7 @@ const CrearActividad = () => {
         </button>
       </form>
       <br/>
-      <MensajeAlerta mensaje={mensaje} tipo="exito" flotante />
+      <MensajeAlerta mensaje={mensajeExito} tipo="exito" flotante />
       <MensajeAlerta mensaje={error} flotante />
       {isSubmitted && !isValid && (
         <div className="form-error">

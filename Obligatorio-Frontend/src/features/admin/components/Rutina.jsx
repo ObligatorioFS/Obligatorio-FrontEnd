@@ -1,32 +1,21 @@
 import { useDispatch } from "react-redux"
 import '../styles/Rutina.css'
 import MensajeAlerta from "../../shared/components/MensajeAlerta"
-import { useEffect, useState } from "react"
-import { actualizarActividad, eliminarActividad } from "../../actividadesSlice"
+import { useState } from "react"
 import { actualizarRutina, removeRutina } from "../../rutinasSlice"
 import { useNavigate } from "react-router"
 import { BASE_URL } from "../../../config/api"
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal"
 
 const Rutina = ({ rutina }) => {
 
   const dispatch = useDispatch()
   const [editando, setEditando] = useState(false)
-  const [mensaje, setMensaje] = useState("")
-  const [mensajeExito, setMensajeExito] = useState("")
+  const { mensaje, setMensaje, mensajeExito, setMensajeExito } = useMensajeTemporal()
   const [cargando, setCargando] = useState(false)
   const navigate = useNavigate()
   const [ejercicioInput, setEjercicioInput] = useState("")
   const [ejerciciosList, setEjerciciosList] = useState(rutina?.ejercicios || [])
-
-  useEffect(() => {
-  if (!mensaje && !mensajeExito) return
-  const timeoutId = setTimeout(() => {
-    setMensaje("")
-    setMensajeExito("")
-  }, 3000)
-  return () => clearTimeout(timeoutId)
-  }, [mensaje, mensajeExito])
-
 
   /* /rutinas/:id     PUT*/
 

@@ -6,14 +6,14 @@ import { obtenerClases } from "../../../config/utils/clasesUtils";
 import { obtenerEstadisticasCliente } from "../../../config/utils/estadisticasClienteUtils";
 import MensajeAlerta from "../../shared/components/MensajeAlerta";
 import "../styles/DetalleClaseCliente.css";
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 
 const DetalleClaseCliente = () => {
   const { id } = useParams();
 
   const [cargando, setCargando] = useState(true);
   const [clase, setClase] = useState(null);
-  const [mensaje, setMensaje] = useState("");
-  const [mensajeExito, setMensajeExito] = useState("");
+  const { mensaje, setMensaje, mensajeExito, setMensajeExito } = useMensajeTemporal();
   const [inscribiendo, setInscribiendo] = useState(false);
   const [removiendo, setRemoviendo] = useState(false);
 
@@ -45,18 +45,6 @@ const DetalleClaseCliente = () => {
   useEffect(() => {
     obtenerClase();
   }, []);
-
-  useEffect(() => {
-    if (!mensaje) return;
-    const timeoutId = setTimeout(() => setMensaje(""), 3000);
-    return () => clearTimeout(timeoutId);
-  }, [mensaje]);
-
-  useEffect(() => {
-    if (!mensajeExito) return;
-    const timeoutId = setTimeout(() => setMensajeExito(""), 3000);
-    return () => clearTimeout(timeoutId);
-  }, [mensajeExito]);
 
   // INSCRIBIRSE A LA CLASE
   const handleOnClickInscribirse = () => {

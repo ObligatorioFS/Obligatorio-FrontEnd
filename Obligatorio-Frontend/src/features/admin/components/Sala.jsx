@@ -1,27 +1,19 @@
 import { useDispatch } from "react-redux"
 import MensajeAlerta from "../../shared/components/MensajeAlerta"
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { actualizarSala } from "../../salasSlice"
 import { BASE_URL } from "../../../config/api"
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal"
 
 
 const Sala = ({ sala }) => {
 
   const dispatch = useDispatch()
   const [editando, setEditando] = useState(false)
-  const [mensaje, setMensaje] = useState("")
-  const [mensajeExito, setMensajeExito] = useState("")
+  const { mensaje, setMensaje, mensajeExito, setMensajeExito } = useMensajeTemporal()
    const [cargando, setCargando] = useState(false)
   const inputNombreRef = useRef()
   const inputCapacidadMaxRef = useRef()
-
-  useEffect(() => {
-    if (!mensajeExito) return
-
-    const timeoutId = setTimeout(() => setMensajeExito(""), 3000)
-
-    return () => clearTimeout(timeoutId)
-  }, [mensajeExito])
 
   const handleOnClickEditar = () => {
         setMensaje("")

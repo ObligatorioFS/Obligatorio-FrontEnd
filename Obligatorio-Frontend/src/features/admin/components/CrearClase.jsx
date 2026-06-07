@@ -5,10 +5,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { agregarClase } from "../../clasesSlice";
-import { useEffect } from "react";
 import { BASE_URL } from "../../../config/api";
 import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdminUtils";
 import { obtenerClases } from "../../../config/utils/clasesUtils";
+import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 
 const CrearClase = () => {
   const dispatch = useDispatch();
@@ -21,22 +21,14 @@ const CrearClase = () => {
   } = useForm({ mode: "onSubmit" });
 
   const [cargando, setCargando] = useState(false);
-  const [mensaje, setMensaje] = useState("");
+  const { mensajeExito, setMensajeExito } = useMensajeTemporal();
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!mensaje) return;
-
-    const timeoutId = setTimeout(() => setMensaje(""), 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, [mensaje]);
 
   const handleOnClickCrearClase = (data) => {
     setCargando(true);
     setError("");
-    setMensaje("");
+    setMensajeExito("");
 
     const nuevaClase = {
       descripcion: data.descripcion,
@@ -76,7 +68,7 @@ const CrearClase = () => {
         });
         obtenerEstadisticasAdmin(dispatch, navigate);
         reset();
-        setMensaje("Clase creada correctamente");
+        setMensajeExito("Clase creada correctamente");
         return;
       })
       .catch((e) => {
@@ -190,7 +182,7 @@ const CrearClase = () => {
         </button>
       </form>
       <br />
-      <MensajeAlerta mensaje={mensaje} tipo="exito" flotante />
+      <MensajeAlerta mensaje={mensajeExito} tipo="exito" flotante />
       {(error || (isSubmitted && !isValid)) && (
         <div className="form-error">
           {error && <p>{error}</p>}

@@ -24,7 +24,7 @@ export const actividadesSlice = createSlice({
             })
     },
        eliminarActividad: (state, action) => {
-            state.notas = state.actividades.filter(actividad => actividad._id != action.payload)
+            state.actividades = state.actividades.filter(actividad => actividad._id != action.payload)
         },
     }
 })

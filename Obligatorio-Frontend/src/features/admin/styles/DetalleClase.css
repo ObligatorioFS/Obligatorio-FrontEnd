@@ -215,6 +215,12 @@
   transform: translateY(0);
 }
 
+.detalle-clase__form-row .primary-btn {
+  color: #ffffff;
+  border-color: #264b73;
+  background: #264b73;
+}
+
 .detalle-clase__form-row .primary-btn:hover {
   background: #1f4f82;
   box-shadow: 0 12px 24px rgba(38, 75, 115, 0.18);
