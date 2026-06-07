@@ -19,9 +19,12 @@ export const rutinasSlice = createSlice({
             return rutina
         })
       },
+    removeRutina: (state, action) => {
+      state.rutinas = state.rutinas.filter(rutina => rutina._id !== action.payload)
+    }
   }
 })
 
-export const { setRutinas } = rutinasSlice.actions
+export const { setRutinas, actualizarRutina, removeRutina } = rutinasSlice.actions
 
 export default rutinasSlice.reducer

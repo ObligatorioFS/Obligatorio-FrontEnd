@@ -1,8 +1,9 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector  } from "react-redux"
+import { useDispatch  } from "react-redux"
 import { useNavigate } from "react-router"
 import { setRutinas } from "../../rutinasSlice"
 import { BASE_URL } from "../../../config/api"
+import Rutina from "./Rutina"
 
 const RutinasPendientes = () => {
 
@@ -32,7 +33,7 @@ const RutinasPendientes = () => {
     .then(data => dispatch(setRutinas(data)))
     .catch()
     .finally()
-   }, [])
+   }, [dispatch, navigate])
 
    const rutinas = useSelector(state => state.rutinas.rutinas);
 
