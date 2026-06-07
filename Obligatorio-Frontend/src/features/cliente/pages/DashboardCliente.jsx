@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import '../styles/DashboardCliente.css'
 import { useNavigate } from 'react-router'
-import Banner from '../../shared/components/Banner'
+import EstadisticasCliente from '../components/EstadisticasCliente'
+import BannerCliente from '../components/BannerCliente'
 
 const DashboardCliente = () => {
 
@@ -21,33 +22,8 @@ const DashboardCliente = () => {
   return (
     <div className="dashboard theme-client">
       <main className="main-content">
-        <Banner />
-
-        {/* =========================
-          ESTADISTICAS
-        ========================== */}
-        <section className="stats-grid">
-          <article className="stat-card">
-            <span>Clases inscriptas</span>
-            <strong>3</strong>
-            <small>Esta semana</small>
-          </article>
-          <article className="stat-card">
-            <span>Rutinas</span>
-            <strong>2</strong>
-            <small>Objetivos activos</small>
-          </article>
-          <article className="stat-card">
-            <span>Plan</span>
-            <strong>Plus</strong>
-            <small>Beneficios disponibles</small>
-          </article>
-          <article className="stat-card">
-            <span>Proxima clase</span>
-            <strong>18:00</strong>
-            <small>Funcional, lunes</small>
-          </article>
-        </section>
+        <BannerCliente />
+        <EstadisticasCliente />
 
         {/* =========================
           CLASES DISPONIBLES

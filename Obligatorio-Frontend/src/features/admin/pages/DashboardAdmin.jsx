@@ -1,7 +1,7 @@
 import '../styles/DashboardAdmin.css'
 import { useNavigate } from 'react-router'
 import { useEffect} from 'react'
-import Banner from '../../shared/components/Banner'
+import BannerAdmin from '../components/BannerAdmin'
 import EstadisticasAdmin from '../components/EstadisticasAdmin'
 import FormularioGestion from '../components/FormularioGestion'
 import ClasesRegistradas from '../components/ClasesRegistradas'
@@ -26,7 +26,7 @@ const DashboardAdmin = () => {
      return (
   <div className="dashboard theme-admin">
     <main className="main-content">
-      <Banner />
+      <BannerAdmin />
       <EstadisticasAdmin />
       <GraficoAdmin />
       <FormularioGestion />

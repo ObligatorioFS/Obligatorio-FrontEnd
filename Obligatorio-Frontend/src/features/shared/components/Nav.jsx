@@ -5,7 +5,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const rol = localStorage.getItem("rolUsu");
   const esAdmin = rol === "admin";
-
+  const nombre = localStorage.getItem('nombreUsu') || 'Jugador'
   const handleOnClickCerrarSesion = () => {
     localStorage.clear();
     navigate("/login");
@@ -18,7 +18,7 @@ const Nav = () => {
 
         <div>
           <strong>Club Activo</strong>
-          <small>{esAdmin ? "Panel Admin" : "Jugador"}</small>
+          <small>{esAdmin ? "Panel Admin" : `Hola, ${nombre}`}</small>
         </div>
       </div>
 

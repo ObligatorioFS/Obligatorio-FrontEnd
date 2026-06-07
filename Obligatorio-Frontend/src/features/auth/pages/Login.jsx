@@ -55,6 +55,7 @@ const Login = () => {
       const payload = jwtDecode(data.token)
       localStorage.setItem('rolUsu', payload.rolUsu)
       localStorage.setItem('planUsu', payload.planUsu)
+      localStorage.setItem('nombreUsu', payload.data.usuario.nombre)
       if(payload.rolUsu === "admin"){
               navigate('/dashboardAdmin')
             }else{

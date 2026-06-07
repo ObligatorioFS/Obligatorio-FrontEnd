@@ -56,6 +56,7 @@ const {
       const payload = jwtDecode(data.token)
       localStorage.setItem('rolUsu', payload.rolUsu)
       localStorage.setItem('planUsu', payload.planUsu)
+      localStorage.setItem('nombreUsu', data.usuario.nombre)
       reset()
       navigate('/dashboardCliente')
      }).catch(e =>{
