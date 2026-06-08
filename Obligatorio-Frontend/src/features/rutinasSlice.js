@@ -11,6 +11,10 @@ export const rutinasSlice = createSlice({
     setRutinas: (state, action) => {
       state.rutinas = action.payload
     },
+    agregarRutina: (state, action) => {
+      const nuevaRutina = { ...action.payload }
+      state.rutinas.push(nuevaRutina)
+    },
     actualizarRutina: (state, action) => {
         state.rutinas = state.rutinas.map(rutina => {
             if (rutina._id == action.payload.id) {
@@ -25,6 +29,6 @@ export const rutinasSlice = createSlice({
   }
 })
 
-export const { setRutinas, actualizarRutina, removeRutina } = rutinasSlice.actions
+export const { setRutinas, agregarRutina, actualizarRutina, removeRutina } = rutinasSlice.actions
 
 export default rutinasSlice.reducer
