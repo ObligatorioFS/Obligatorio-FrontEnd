@@ -1,0 +1,176 @@
+@import "../../shared/styles/DashboardBase.css";
+
+/* =========================
+   TEMA JUGADOR
+========================= */
+:root {
+  --client-main: #f2b36d;
+  --client-dark: #704419;
+  --client-soft: #fff3e5;
+}
+
+.theme-client,
+.detalles-rutina-page {
+  --theme-main: var(--client-main);
+  --theme-dark: var(--client-dark);
+  --theme-soft: var(--client-soft);
+  --theme-border: rgba(112, 68, 25, 0.14);
+  --theme-focus-ring: rgba(242, 179, 109, 0.25);
+}
+
+/* =========================
+   DETALLES RUTINA
+========================= */
+.detalles-rutina-page {
+  min-height: 100vh;
+  padding: 28px;
+  display: grid;
+  align-content: start;
+  color: var(--text);
+  background: var(--page);
+}
+
+.detalles-rutina {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+  position: relative;
+  padding: 28px;
+  border: 1px solid rgba(242, 179, 109, 0.42);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #fffaf4 0%, #ffffff 100%);
+  box-shadow: 0 14px 28px rgba(112, 68, 25, 0.07);
+}
+
+.detalles-rutina__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 2px;
+}
+
+.detalles-rutina__title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.detalles-rutina__back {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(242, 179, 109, 0.48);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #704419;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.detalles-rutina__back::before {
+  content: "<";
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.detalles-rutina__back:hover {
+  border-color: #c97b2f;
+  background: #fff3e5;
+  transform: translateX(-2px);
+}
+
+.detalles-rutina h1 {
+  margin: 0;
+  color: #172033;
+  text-transform: capitalize;
+  font-size: 34px;
+  line-height: 1.1;
+}
+
+.detalles-rutina__top p {
+  margin: 8px 0 0 50px;
+  color: #596579;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.detalles-rutina__badge {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(242, 179, 109, 0.48);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: #ffffff;
+  color: #704419;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.detalles-rutina__summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.detalles-rutina__summary div {
+  min-height: 76px;
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(242, 179, 109, 0.36);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+.detalles-rutina__summary span {
+  color: #667085;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.detalles-rutina__summary strong {
+  color: #172033;
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+.detalles-rutina__section {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid rgba(242, 179, 109, 0.36);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+.detalles-rutina__acciones {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.detalles-rutina__acciones .primary-btn {
+  flex: 1;
+}
+
+.sin-ejercicios {
+  padding: 20px;
+  border-radius: var(--radius);
+  background: #f5f3ff;
+  border: 1px solid #d4c5f9;
+}
+
+.sin-ejercicios p {
+  margin: 0;
+  color: #5e4e8c;
+  font-size: 15px;
+  line-height: 1.6;
+}

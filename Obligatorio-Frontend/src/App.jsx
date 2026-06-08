@@ -9,6 +9,7 @@ import Layout from './features/shared/components/Layout'
 import RutaNoEncontrada from './features/shared/components/RutaNoEncontrada'
 import DetalleClase from './features/admin/pages/DetalleClase'
 import DetalleClaseCliente from './features/cliente/pages/DetalleClaseCliente'
+import DetallesRutina from './features/cliente/pages/DetallesRutina'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
            <Route path='/dashboardCliente' element={<DashboardCliente />} />
            <Route path='/dashboardAdmin/clases/:id' element={<DetalleClase />} />
            <Route path='/dashboardCliente/clases/:id' element={<DetalleClaseCliente />} />
+           <Route path='/dashboardCliente/rutinas/:id' element={<DetallesRutina />} />
            
           </Route>
 

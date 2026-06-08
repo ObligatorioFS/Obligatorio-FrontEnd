@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { BASE_URL } from "../../../config/api";
 import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 import { setRutinas } from "../../rutinasSlice";
+import Rutina from "./Rutina";
 
 const MisRutinas = () => {
   const { mensajeExito, setMensajeExito } = useMensajeTemporal()
@@ -51,20 +52,11 @@ const MisRutinas = () => {
 
           <div className="routine-grid">
             <article className="routine-card">
-             {rutinas.length > 0 ?
-              (rutinas.map(rutina => (
-                <div key={rutina._id}>
-                  <strong>{rutina.objetivo}</strong>
-                  <p>Actividad: {rutina.actividad.nombre || "Sin actividad"}</p>
-                  <ul>
-                    {rutina.ejercicios?.map((ejercicio, index) => (
-                      <li key={index}>{ejercicio}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))) : (
-                <p>No tienes rutinas asignadas.</p>
-              )}
+              {rutinas.length> 0 ?
+                    (rutinas.map(rutina => <Rutina key={rutina._id} rutina={rutina} />))
+                    :
+                    (<p>No tienes rutinas asignadas.</p>)
+                }
             </article>
             <MensajeAlerta mensaje={mensajeExito} tipo="exito" flotante />
           </div>
