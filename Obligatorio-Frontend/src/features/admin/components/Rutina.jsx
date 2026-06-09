@@ -39,8 +39,8 @@ const Rutina = ({ rutina }) => {
   }
 
   const handleOnClickGuardarEdicion = () => {
-    if (!ejerciciosList || ejerciciosList.length === 0) {
-      setMensaje("Debe agregar al menos un ejercicio")
+    if (!ejerciciosList && ejerciciosList.length === 0) {
+      setEditando(false)
       return
     }
     setCargando(true)
