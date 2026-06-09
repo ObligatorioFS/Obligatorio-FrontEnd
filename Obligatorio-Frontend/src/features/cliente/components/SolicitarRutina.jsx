@@ -17,7 +17,7 @@ const SolicitarRutina = () => {
     reset,
     formState: { errors, isValid, isSubmitted },
   } = useForm({ mode: "onSubmit" });
-
+//
   const dispatch = useDispatch();
   const { mensajeExito, setMensajeExito } = useMensajeTemporal();
   const [error, setError] = useState("");
