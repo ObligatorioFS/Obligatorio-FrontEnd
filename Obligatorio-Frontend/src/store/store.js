@@ -12,6 +12,6 @@ export const store = configureStore({
        salas: salasReducer,
        actividades: actividadesReducer,
        rutinas: rutinasReducer,
-       estadisticas: estadisticasReducer
+       estadisticas: estadisticasReducer,
     }
 })

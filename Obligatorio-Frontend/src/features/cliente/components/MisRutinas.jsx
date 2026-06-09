@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import MensajeAlerta from "../../shared/components/MensajeAlerta";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useForm } from "react-hook-form";
 import { BASE_URL } from "../../../config/api";
 import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
 import { setRutinas } from "../../rutinasSlice";

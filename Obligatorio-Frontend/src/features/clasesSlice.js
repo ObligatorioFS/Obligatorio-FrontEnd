@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     clases: [],
+    misClases: [],
     pagination: {
         total: 0,
         totalPaginas: 1
@@ -16,6 +17,16 @@ export const clasesSlice = createSlice({
       setClases: (state, action) => {
         state.clases = action.payload.clases
         state.pagination = {total: action.payload.total, totalPaginas: action.payload.totalPaginas}
+      },
+      setMisClases: (state, action) => {
+        state.misClases = action.payload
+      },
+      agregarMiClase: (state, action) => {
+        const nuevaClase = { ...action.payload }
+        state.misClases.push(nuevaClase)
+      },
+      removerMiClase: (state, action) => {
+        state.misClases = state.misClases.filter(clase => clase._id !== action.payload)
       },
       agregarClase: (state, action) => {
         const nuevaClase = { ...action.payload }
@@ -38,6 +49,6 @@ export const clasesSlice = createSlice({
     }
 })
 
-export const { setClases, agregarClase, eliminarClase, actualizarClase, setCargandoClases } = clasesSlice.actions
+export const { setClases, setMisClases, agregarClase, agregarMiClase, removerMiClase, eliminarClase, actualizarClase, setCargandoClases } = clasesSlice.actions
 
 export default clasesSlice.reducer

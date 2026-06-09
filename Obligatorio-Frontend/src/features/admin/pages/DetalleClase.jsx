@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import MensajeAlerta from "../../shared/components/MensajeAlerta";
@@ -8,6 +9,8 @@ import { obtenerEstadisticasAdmin } from "../../../config/utils/estadisticasAdmi
 import { obtenerClases } from "../../../config/utils/clasesUtils";
 import { useDispatch } from "react-redux";
 import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
+
+// falta boton remover toda la lista de inscripos
 
 const DetalleClase = () => {
   const { id } = useParams();

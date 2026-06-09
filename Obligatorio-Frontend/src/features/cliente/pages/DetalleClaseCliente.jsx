@@ -7,6 +7,7 @@ import { obtenerEstadisticasCliente } from "../../../config/utils/estadisticasCl
 import MensajeAlerta from "../../shared/components/MensajeAlerta";
 import "../styles/DetalleClaseCliente.css";
 import useMensajeTemporal from "../../../config/utils/useMensajeTemporal";
+import { agregarMiClase, removerMiClase } from "../../clasesSlice";
 
 const DetalleClaseCliente = () => {
   const { id } = useParams();
@@ -65,6 +66,7 @@ const DetalleClaseCliente = () => {
             page: 1,
           });
           obtenerEstadisticasCliente(dispatch, navigate);
+          dispatch(agregarMiClase(clase));
           setMensaje("");
           setMensajeExito("Inscripcion realizada correctamente");
           return;
@@ -105,7 +107,7 @@ const DetalleClaseCliente = () => {
             page: 1,
           });
           obtenerEstadisticasCliente(dispatch, navigate);
-
+          dispatch(removerMiClase(clase._id));
           setMensaje("");
           setMensajeExito("Inscripcion cancelada correctamente");
           return;
