@@ -15,7 +15,7 @@ const EstadisticasCliente = () => {
   useEffect(() => {
     obtenerEstadisticasCliente(dispatch, navigate);
   }, []);
-
+  //fix
   const spinner = <span className="spinner" aria-label="Cargando"></span>;
   const planActual = estadisticas.plan || "Sin datos";
   const esPremium = estadisticas.plan === "premium";
